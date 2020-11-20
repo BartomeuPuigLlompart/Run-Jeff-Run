@@ -5,7 +5,7 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     private PlatformEffector2D effector;
-    [SerializeField] private float waitTime;
+    private float waitTime;
 
     // Start is called before the first frame update
     void Start()

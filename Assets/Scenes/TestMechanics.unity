@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 65904588}
   - component: {fileID: 65904591}
   - component: {fileID: 65904592}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6dac9cc945066489bed8a7db79c8f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTime: 0
 --- !u!1 &174620281
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +273,7 @@ GameObject:
   - component: {fileID: 174620283}
   - component: {fileID: 174620282}
   - component: {fileID: 174620284}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -411,7 +410,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &660426523
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -514,7 +513,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c6e490d85570f04ba47ddaa1e5a664f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpVelocity: 10
+  jumpVelocity: 16.7
+  gravityExtra: 11.37
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  isGrounded: 0
 --- !u!1 &1415691665
 GameObject:
   m_ObjectHideFlags: 0

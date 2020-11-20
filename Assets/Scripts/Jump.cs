@@ -6,6 +6,11 @@ public class Jump : MonoBehaviour
 {
     [Range(1, 20)]
     [SerializeField] private float jumpVelocity = 5f;
+    [SerializeField] private float gravityExtra = 9.8f;
+
+    [SerializeField] private LayerMask groundLayer;
+
+    [SerializeField] private bool isGrounded;
     //[SerializeField] private float fallMultiplier = 2.5f;
     //[SerializeField] private float lowJumpMultiplier = 2f;
 
@@ -27,7 +32,29 @@ public class Jump : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpVelocity;
+            DoJump();
+        }
+
+        if(!IsGrounded())
+        {
+            Vector2 vel = rb.velocity;
+
+            vel.y -= gravityExtra * Time.deltaTime;
+            rb.velocity = vel;
+        }
+
+        isGrounded = IsGrounded();
+    }
+
+    void DoJump()
+    {
+        if(!IsGrounded())
+        {
+            return;
+        }
+        else
+        {
+            rb.velocity = Vector2.up * jumpVelocity;
         }
     }
 
@@ -46,4 +73,19 @@ public class Jump : MonoBehaviour
     //        rb.gravityScale = 1f;
     //    }
     //}
+
+    bool IsGrounded()
+    {
+        Vector2 position = transform.position;
+        Vector2 direction = Vector2.down;
+        float distance = 1.0f;
+
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
+        if (hit.collider != null)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }
