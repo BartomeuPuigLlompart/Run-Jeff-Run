@@ -30,7 +30,7 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") || HasTapped())
         {
             DoJump();
         }
@@ -87,5 +87,10 @@ public class Jump : MonoBehaviour
         }
 
         return false;
+    }
+
+    bool HasTapped()
+    {
+        return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
     }
 }
