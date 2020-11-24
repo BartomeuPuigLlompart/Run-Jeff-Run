@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class RenderManager : MonoBehaviour
 {
-    float groundfOffset = 21.6f;
+    const float groundfOffset = 21.6f;
+    const float groundY = -4.64f;
+    const float topT = 1.36f;
 
     // Start is called before the first frame update
     void Start()
@@ -32,5 +34,14 @@ public class RenderManager : MonoBehaviour
     void SpawnGround(Transform groundObject)
     {
         groundObject.transform.position += new Vector3(groundfOffset * 2.0f, 0, 0);
+        //Random Y
+        float randomY = groundY + Random.Range(0, 7);
+        groundObject.transform.position = new Vector3(groundObject.transform.position.x, randomY, groundObject.transform.position.z);
+        while(randomY != groundY)
+        {
+            GameObject underground = Instantiate(groundObject.gameObject, new Vector3(groundObject.position.x, randomY, groundObject.position.z) + Vector3.down, groundObject.rotation);
+            underground.layer = 0;
+            randomY = (float)System.Math.Round(underground.transform.position.y, 2);
+        }
     }
 }
