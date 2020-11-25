@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
+    private Vector2 start, end;
+    private bool hasSwipedDown = false;
+
     private PlatformEffector2D effector;
-    private float waitTime;
 
     // Start is called before the first frame update
     void Start()
@@ -16,27 +18,21 @@ public class Platform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.DownArrow))
-        {
-            waitTime = .1f;
-        }
+        effector.rotationalOffset = 
+            (Input.GetKey(KeyCode.DownArrow) || hasSwipedDown) 
+            ? 180f : 0;
+    }
 
-        if(Input.GetKey(KeyCode.DownArrow))
-        {
-            if(waitTime <= 0)
-            {
-                effector.rotationalOffset = 180f;
-                waitTime = .1f;
-            }
-            else
-            {
-                waitTime -= Time.deltaTime;
-            }
-        }
+    void CheckSwipe()
+    {
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            start = Input.GetTouch(0).position;
 
-        if(Input.GetButton("Jump"))
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
-            effector.rotationalOffset = 0;
+            end = Input.GetTouch(0).position;
+
+            hasSwipedDown = end.y > start.y;
         }
     }
 }
