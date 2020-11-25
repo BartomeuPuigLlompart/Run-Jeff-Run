@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Render Objects
+  - Camera Scope
   layers:
   - Default
   - TransparentFX

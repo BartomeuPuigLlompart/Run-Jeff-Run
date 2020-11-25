@@ -35,7 +35,7 @@ public class RenderManager : MonoBehaviour
     {
         groundObject.transform.position += new Vector3(groundfOffset * 2.0f, 0, 0);
         //Random Y
-        float randomY = groundY + Random.Range(0, 7);
+        float randomY = groundY + ((Time.time - CameraMovement.cameraMovement.startRef) < ( CameraMovement.cameraMovement.diffInTime / 2.0f) ? Random.Range(0, (int)((Time.time - CameraMovement.cameraMovement.startRef) / 60.0f) + 3) : Random.Range(0, 7));
         groundObject.transform.position = new Vector3(groundObject.transform.position.x, randomY, groundObject.transform.position.z);
         while(randomY != groundY)
         {
