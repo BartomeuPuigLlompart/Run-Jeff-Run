@@ -161,8 +161,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.025
-  diffInTime: 10
-  maxDiff: {x: 0.1, y: 50}
+  diffInTime: 200
+  maxDiff: {x: 0.04, y: 50}
   startRef: 0
 --- !u!20 &519420031
 Camera:
@@ -269,6 +269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444c66a148bcce243855f33bc185b403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  platformPrefab: {fileID: 7755252030631709840, guid: 1d92fdcceae700c44b1abdf006c243d3,
+    type: 3}
 --- !u!61 &914359548
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -423,8 +425,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c32c133e89f69dc499a73169078ecf3e, type: 3}
+  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -449,9 +451,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.00000023841858}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 2.02, y: 2.5}
     newSize: {x: 4, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
@@ -531,8 +533,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c32c133e89f69dc499a73169078ecf3e, type: 3}
+  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
@@ -557,9 +559,9 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.00000023841858}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 2.02, y: 2.5}
     newSize: {x: 4, y: 4}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
@@ -771,11 +773,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jeff
       objectReference: {fileID: 0}
+    - target: {fileID: 528249053905863790, guid: 6009f9b3665807a46b2d4b98c18c410c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c32c133e89f69dc499a73169078ecf3e,
+        type: 3}
+    - target: {fileID: 528249053905863790, guid: 6009f9b3665807a46b2d4b98c18c410c,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.9869063
+      objectReference: {fileID: 0}
+    - target: {fileID: 528249053905863790, guid: 6009f9b3665807a46b2d4b98c18c410c,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 528249053905863790, guid: 6009f9b3665807a46b2d4b98c18c410c,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3256285065413852066, guid: 6009f9b3665807a46b2d4b98c18c410c,
         type: 3}
       propertyPath: gameMidRef
       value: 
       objectReference: {fileID: 914359546}
+    - target: {fileID: 3256285065413852066, guid: 6009f9b3665807a46b2d4b98c18c410c,
+        type: 3}
+      propertyPath: finalFrames
+      value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 3256285065413852066, guid: 6009f9b3665807a46b2d4b98c18c410c,
+        type: 3}
+      propertyPath: framesRef
+      value: 240
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6009f9b3665807a46b2d4b98c18c410c, type: 3}
 --- !u!1001 &3954654339021316181

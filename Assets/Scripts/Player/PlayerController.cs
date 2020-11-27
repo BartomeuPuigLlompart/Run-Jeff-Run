@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] states state;
     [SerializeField]Transform gameMidRef;
     [SerializeField] float speed;
-    const float deadRef = 0.015f;
-    const float hurtRef = 0.02f;
-    const float normalRef = 0.1f;
+    const float deadRef = 0.0015f;
+    const float hurtRef = 0.0075f;
+    const float normalRef = 0.015f;
     float inmunityRef = 0.0f;
     List<Vector2> trail;
     public int framesRef;
