@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 65904592}
   m_Layer: 8
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: FloatingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 660426526}
   m_Layer: 0
   m_Name: Jeff
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -515,10 +515,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpVelocity: 16.7
   gravityExtra: 11.37
+  dashDownVelocity: 20
+  startDashTime: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
-  isGrounded: 0
+  grounded: 0
+  currPlatform: {fileID: 0}
 --- !u!1 &1415691665
 GameObject:
   m_ObjectHideFlags: 0

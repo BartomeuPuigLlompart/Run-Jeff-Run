@@ -8,18 +8,23 @@ public class Platform : MonoBehaviour
     private bool hasSwipedDown = false;
 
     private PlatformEffector2D effector;
+    private GameObject player;
+    private Jump playerJump;
 
     // Start is called before the first frame update
     void Start()
     {
         effector = GetComponent<PlatformEffector2D>();
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player) playerJump = player.GetComponent<Jump>();
     }
 
     // Update is called once per frame
     void Update()
     {
         effector.rotationalOffset = 
-            (Input.GetKey(KeyCode.DownArrow) || hasSwipedDown) 
+            (playerJump.IsDashing()) 
             ? 180f : 0;
     }
 
