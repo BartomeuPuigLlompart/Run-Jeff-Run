@@ -5,7 +5,9 @@ using UnityEngine;
 public class Jump : MonoBehaviour
 {
     private Vector2 start, end;
+    [SerializeField] private float swipeDistance;
     private bool hasSwipedDown = false;
+    private bool hasSwiped = false;
 
     [Range(1, 50)]
     [SerializeField] private float jumpVelocity = 5f;
@@ -25,6 +27,9 @@ public class Jump : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField] private GameObject currPlatform;
 
+    [SerializeField] private AnimationCurve jumpFactor;
+    [SerializeField] private AnimationCurve dashDownFactor;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -40,12 +45,14 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump") || HasTapped())
+        CheckSwipe();
+
+        if (Input.GetButtonDown("Jump") || (hasSwiped && !hasSwipedDown) && grounded)
         {
             DoJump();
         }
 
-        if (Input.GetKey(KeyCode.DownArrow) || hasSwipedDown)
+        if (Input.GetKey(KeyCode.DownArrow) || (hasSwiped && hasSwipedDown) && !grounded)
         {
             dashing = true;
         }
@@ -69,6 +76,7 @@ public class Jump : MonoBehaviour
 
     void DoJump()
     {
+        Debug.Log("Jumping");
         if(!IsGrounded())
         {
             return;
@@ -77,11 +85,14 @@ public class Jump : MonoBehaviour
         {
             rb.velocity = Vector2.up * jumpVelocity;
         }
+
+        hasSwiped = false;
     }
 
     void DoDownDash()
     {
-        if(dashTime <= 0)
+        Debug.Log("Dashing");
+        if (dashTime <= 0)
         {
             dashing = false;
             dashTime = startDashTime;
@@ -91,7 +102,8 @@ public class Jump : MonoBehaviour
             dashTime -= Time.deltaTime;
             rb.velocity = Vector2.down * dashDownVelocity;
         }
-        
+
+        hasSwiped = false;
     }
 
     bool IsGrounded()
@@ -121,14 +133,30 @@ public class Jump : MonoBehaviour
 
     void CheckSwipe()
     {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        start = end = Vector2.zero;
+
+        //Getting the start point of the swipe
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && start == Vector2.zero)
             start = Input.GetTouch(0).position;
 
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        //Getting the end point of the swipe
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && end == Vector2.zero)
         {
             end = Input.GetTouch(0).position;
+            swipeDistance = Vector2.Distance(start, end) / Screen.height; //Get the distance to calculate the time/power
+            hasSwipedDown = end.y < start.y; //Check if it has to jump or dash
+            hasSwiped = true; //Activate the swipe/jump function
 
-            hasSwipedDown = end.y > start.y;
+            if (hasSwipedDown && rb.velocity.y == 0)
+            {
+                //Max 1s, Min 0,25s
+                dashTime = startDashTime = dashDownFactor.Evaluate(swipeDistance);
+            }
+            else if(!hasSwipedDown && rb.velocity.y != 0)
+            {
+                //Max 17, Min 8 
+                jumpVelocity = jumpFactor.Evaluate(swipeDistance);
+            }
         }
     }
 
