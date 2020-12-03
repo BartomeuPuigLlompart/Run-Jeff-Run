@@ -47,12 +47,12 @@ public class Jump : MonoBehaviour
     {
         CheckSwipe();
 
-        if (Input.GetButtonDown("Jump") || (hasSwiped && !hasSwipedDown) && grounded)
+        if (Input.GetButtonDown("Jump") || (hasSwiped && !hasSwipedDown))
         {
             DoJump();
         }
 
-        if (Input.GetKey(KeyCode.DownArrow) || (hasSwiped && hasSwipedDown) && !grounded)
+        if (Input.GetKey(KeyCode.DownArrow) || (hasSwiped && hasSwipedDown))
         {
             dashing = true;
         }
@@ -133,26 +133,24 @@ public class Jump : MonoBehaviour
 
     void CheckSwipe()
     {
-        start = end = Vector2.zero;
-
         //Getting the start point of the swipe
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && start == Vector2.zero)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
             start = Input.GetTouch(0).position;
 
         //Getting the end point of the swipe
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && end == Vector2.zero)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
             end = Input.GetTouch(0).position;
             swipeDistance = Vector2.Distance(start, end) / Screen.height; //Get the distance to calculate the time/power
             hasSwipedDown = end.y < start.y; //Check if it has to jump or dash
             hasSwiped = true; //Activate the swipe/jump function
 
-            if (hasSwipedDown && rb.velocity.y == 0)
+            if (hasSwipedDown && !grounded)
             {
                 //Max 1s, Min 0,25s
                 dashTime = startDashTime = dashDownFactor.Evaluate(swipeDistance);
             }
-            else if(!hasSwipedDown && rb.velocity.y != 0)
+            else if(!hasSwipedDown && grounded)
             {
                 //Max 17, Min 8 
                 jumpVelocity = jumpFactor.Evaluate(swipeDistance);
