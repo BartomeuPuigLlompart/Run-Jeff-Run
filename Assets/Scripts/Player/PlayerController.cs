@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public Text text;
     enum states { DEAD, HURT, NORMAL}
     [SerializeField] states state;
     [SerializeField]Transform gameMidRef;
@@ -16,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public int framesRef;
     public  int finalFrames = 50;
     public static PlayerController playerController;
+    private int coins;
 
     private void Awake()
     {
@@ -68,5 +72,18 @@ public class PlayerController : MonoBehaviour
             trail.Remove(trail[0]);
         }
         return pos;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Coin"))
+        {
+           
+            coins = int.Parse(text.text);
+            coins++;
+            text.text = coins.ToString();
+            Destroy(collision.gameObject);
+        }
+       
     }
 }
