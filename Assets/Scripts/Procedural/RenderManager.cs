@@ -11,8 +11,9 @@ public class RenderManager : MonoBehaviour
     const int maxRows = 10;
     const int maxPlatformColumns = 4;
     [SerializeField] GameObject platformPrefab;
+    [SerializeField] GameObject coinPrefab;
+    public bool isWorking;
 
-    
 
     // Start is called before the first frame update
 
@@ -37,18 +38,17 @@ public class RenderManager : MonoBehaviour
     {
         groundObject.transform.position += new Vector3(groundfOffset * 2.0f, 0, 0);
         //Random Y
-        float randomY = groundY + ((Time.time - CameraMovement.cameraMovement.startRef) < ( CameraMovement.cameraMovement.diffInTime / 2.0f) ? 
+        float randomY = groundY + (nonHalfDiffTime() ? 
             Random.Range(0, (int)((Time.time - CameraMovement.cameraMovement.startRef) / 60.0f) + 3) : Random.Range(0, maxGroundRows));
         groundObject.transform.position = new Vector3(groundObject.transform.position.x, randomY, groundObject.transform.position.z);
         Instantiate(platformPrefab, new Vector3(groundObject.position.x, groundObject.transform.position.y -100, groundObject.position.z), groundObject.rotation, groundObject);
         //Free Y Space
-        float maxTiles = ((Time.time - CameraMovement.cameraMovement.startRef) < (CameraMovement.cameraMovement.diffInTime / 2.0f) ? maxNonFreeSpace / 2.0f : maxNonFreeSpace);
+        float maxTiles = (nonHalfDiffTime() ? maxNonFreeSpace / 2.0f : maxNonFreeSpace);
+        //Spawn Platforms
         GameObject[][] platforms = new GameObject[maxPlatformColumns][];
         int counter = 0;
         for (int i = 0; i < maxPlatformColumns; i++)
         {
-            Debug.Log((int)(randomY - groundY));
-            Debug.Log((int)(maxRows - (randomY - groundY + 1)));
             platforms[i] = new GameObject[(int)(maxRows - (randomY - groundY + 1))];
             for (int j = 0; j < (int)(maxRows - (randomY - groundY + 1)); j++)
             {
@@ -62,17 +62,37 @@ public class RenderManager : MonoBehaviour
                     j += i != 0 ? 2 : 3;
                     counter++;
                 }
+                else if(Random.Range(0, (nonHalfDiffTime() ? (checkChain(platforms, i, j) ? 2 : (isWorking ? 4 : 15)) : 
+                    (checkChain(platforms, i, j) ? 2 : (isWorking ? 4 : 8)))) == 1)
+                {
+                    platforms[i][j] = Instantiate(coinPrefab, new Vector3(groundObject.position.x, groundObject.transform.position.y + j + 1, groundObject.position.z), groundObject.GetChild(0).rotation, groundObject);
+                    platforms[i][j].transform.localPosition = new Vector2(-1.5f + i, platforms[i][j].transform.localPosition.y);
+                    platforms[i][j].tag = "Coin";
+                    platforms[i][j].transform.parent = null;
+                    platforms[i][j].transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+                }    
             }
         }
 
         Destroy(groundObject.GetChild(0).gameObject);
 
+        //Spawn Ground
         while(randomY != groundY)
         {
             GameObject underground = Instantiate(groundObject.gameObject, new Vector3(groundObject.position.x, randomY, groundObject.position.z) + Vector3.down, groundObject.rotation);
             if (underground.transform.GetChild(0) != null) Destroy(underground.transform.GetChild(0).gameObject);
             underground.layer = 0;
             randomY = (float)System.Math.Round(underground.transform.position.y, 2);
+        }
+
+        bool checkChain(GameObject[][] _platforms, int _i, int _j)
+        {
+            return isWorking && _j != 0 && _platforms[_i][_j - 1] != null;
+        }
+
+        bool nonHalfDiffTime()
+        {
+            return (Time.time - CameraMovement.cameraMovement.startRef) < (CameraMovement.cameraMovement.diffInTime / 2.0f);
         }
     }
 }
