@@ -6,11 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+ 
+
     public Text text;
     enum states { DEAD, HURT, NORMAL}
     [SerializeField] states state;
     [SerializeField]Transform gameMidRef;
     [SerializeField] float speed;
+    [SerializeField] float savedSpeed;
     const float deadRef = 0.0015f;
     const float hurtRef = 0.0075f;
     const float normalRef = 0.015f;
@@ -51,6 +54,13 @@ public class PlayerController : MonoBehaviour
         transform.position = Vector2.Lerp(transform.position, new Vector2(gameMidRef.position.x, transform.position.y), speed);
 
         trail.Add(transform.position);
+       
+        if (PauseMenu.GameIsPaused == true)
+        {
+            savedSpeed= speed;
+            speed = 0;
+        }
+      
     }
 
     public void hurtplayer()
@@ -78,12 +88,13 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("Coin"))
         {
-           
+
             coins = int.Parse(text.text);
             coins++;
             text.text = coins.ToString();
             Destroy(collision.gameObject);
+            FindObjectOfType<AudioManager>().Play("CoinCollect");
+
         }
-       
     }
 }
