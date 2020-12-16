@@ -475,7 +475,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &6755231342876401485
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -549,14 +549,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.627451, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.8862745, g: 0.0627451, b: 0.40784314, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 7a29f97b05411fc4eb771163f6db4e53, type: 3}
     m_FontSize: 159
     m_FontStyle: 1
     m_BestFit: 0
@@ -568,7 +568,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'RUN '
+  m_Text: RUN JEFF RUN
 --- !u!224 &6755231342982157129
 RectTransform:
   m_ObjectHideFlags: 0
@@ -585,8 +585,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -98.99994, y: 176.2}
-  m_SizeDelta: {x: 1300.7522, y: 202.47487}
+  m_AnchoredPosition: {x: 64, y: 14}
+  m_SizeDelta: {x: 1687.926, y: 202.47487}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6755231342982157130
 GameObject:
@@ -669,7 +669,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &6755231344003363149
 CanvasRenderer:
   m_ObjectHideFlags: 0
