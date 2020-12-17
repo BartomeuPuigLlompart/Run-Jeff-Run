@@ -67,7 +67,7 @@ public class RenderManager : MonoBehaviour
                 {
                     platforms[i][j] = Instantiate(coinPrefab, new Vector3(groundObject.position.x, groundObject.transform.position.y + j + 1, groundObject.position.z), groundObject.GetChild(0).rotation, groundObject);
                     platforms[i][j].transform.localPosition = new Vector2(-1.5f + i, platforms[i][j].transform.localPosition.y);
-                    platforms[i][j].tag = "Coin";
+                    platforms[i][j].tag = "Render Objects";
                     platforms[i][j].transform.parent = null;
                     platforms[i][j].transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
                 }    
