@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -45,5 +46,10 @@ public class MenuManager : MonoBehaviour
         shop.SetActive(true);
         menu.SetActive(false);
         levels.SetActive(false);
+    }
+
+    public void GoToLevel1() //For Presentation only
+    {
+        SceneManager.LoadScene(2); //Menu scene
     }
 }

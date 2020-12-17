@@ -393,7 +393,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.5}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1071, y: 544}
+  m_AnchoredPosition: {x: -975, y: 400}
   m_SizeDelta: {x: 1037.733, y: 913.1637}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &316115120
@@ -933,7 +933,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -667, y: 508}
+  m_AnchoredPosition: {x: -571, y: 364}
   m_SizeDelta: {x: 279.10458, y: 73.93459}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &876177670
@@ -1162,8 +1162,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 128, y: 128}
+  m_AnchoredPosition: {x: -5.899994, y: 38.099976}
+  m_SizeDelta: {x: 243.99829, y: 243.99829}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1033309328
 MonoBehaviour:
@@ -1304,6 +1304,7 @@ GameObject:
   - component: {fileID: 1075291812}
   - component: {fileID: 1075291811}
   - component: {fileID: 1075291810}
+  - component: {fileID: 1075291815}
   m_Layer: 5
   m_Name: Home Button
   m_TagString: Untagged
@@ -1327,8 +1328,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 129, y: -9}
-  m_SizeDelta: {x: 64, y: 64}
+  m_AnchoredPosition: {x: 240, y: 20.999985}
+  m_SizeDelta: {x: 121.999146, y: 121.999146}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1075291810
 MonoBehaviour:
@@ -1373,12 +1374,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 72823913}
-        m_MethodName: LoadMenu
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1491,7 +1492,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -47, y: -45.5}
+  m_AnchoredPosition: {x: -156, y: -120}
   m_SizeDelta: {x: 1027.1003, y: 1091.5951}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1174376452
@@ -1638,8 +1639,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -134}
-  m_SizeDelta: {x: 64, y: 64}
+  m_AnchoredPosition: {x: -5.899994, y: -217.30002}
+  m_SizeDelta: {x: 121.999146, y: 121.999146}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1310161298
 MonoBehaviour:
@@ -1840,8 +1841,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -127, y: -9}
-  m_SizeDelta: {x: 64, y: 64}
+  m_AnchoredPosition: {x: -248, y: 21}
+  m_SizeDelta: {x: 121.999146, y: 121.999146}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1322567046
 MonoBehaviour:
