@@ -66,11 +66,17 @@ public class PlayerController : MonoBehaviour
     public void hurtplayer()
     {
         transform.position += Vector3.up;
-        if (inmunityRef + 1.0f < Time.time)
+        if (inmunityRef + 3.0f < Time.time)
         {
             inmunityRef = Time.time;
-            //state--;
+            state--;
+            if (state == 0) Invoke("backToMenu", 3.0f);
         }
+    }
+
+    void backToMenu()
+    {
+        SceneManager.LoadScene(1);
     }
 
     public Vector2 checkTrail(Vector2 pos)
@@ -86,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Coin"))
+        if (collision.gameObject.layer == 9) //Layer Coin
         {
 
             coins = int.Parse(text.text);

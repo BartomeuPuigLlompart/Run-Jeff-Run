@@ -92,7 +92,7 @@ public class Jump : MonoBehaviour
     void DoDownDash()
     {
         Debug.Log("Dashing");
-        if (dashTime <= 0)
+        if (dashTime <= 0 || (IsGrounded() && !IsPlatform()))
         {
             dashing = false;
             dashTime = startDashTime;
@@ -114,6 +114,21 @@ public class Jump : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
         if (hit.collider != null)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    bool IsPlatform()
+    {
+        Vector2 position = transform.position;
+        Vector2 direction = Vector2.down;
+        float distance = 1.0f;
+
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
+        if (hit.collider != null && hit.collider.name.Length >= 8 && hit.collider.name.Substring(0, 8) == "Platform")
         {
             return true;
         }
@@ -160,11 +175,11 @@ public class Jump : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "FloatingPlatform" && IsGrounded() && oldGrounded) currPlatform = collision.gameObject;
+        if (collision.gameObject.name.Length >= 8 && collision.gameObject.name.Substring(0, 8) == "Platform" && IsGrounded() && oldGrounded) currPlatform = collision.gameObject;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "FloatingPlatform") currPlatform = null;
+        if (collision.gameObject.name.Length >= 8 && collision.gameObject.name.Substring(0, 8) == "Platform") currPlatform = null;
     }
 }

@@ -513,15 +513,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c6e490d85570f04ba47ddaa1e5a664f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swipeDistance: 0
-  jumpVelocity: 16.7
+  swipeDistance: 0.7467121
+  jumpVelocity: 16.093948
   gravityExtra: 11.37
-  dashDownVelocity: 20
-  startDashTime: 0.5
+  dashDownVelocity: 40
+  startDashTime: 0.4365221
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
-  grounded: 0
+  grounded: 1
   currPlatform: {fileID: 0}
   jumpFactor:
     serializedVersion: 2
@@ -569,8 +569,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0.25
+      time: 0.0028604865
+      value: 0.048952196
       inSlope: 0.0000010669509
       outSlope: 0.0000010669509
       tangentMode: 0
@@ -578,8 +578,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 1
     - serializedVersion: 3
-      time: 0.2
-      value: 0.25
+      time: 0.34651184
+      value: 0.050481264
       inSlope: -0.0000013278326
       outSlope: -0.0000013278326
       tangentMode: 0
@@ -587,23 +587,23 @@ MonoBehaviour:
       inWeight: 1
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.6
-      value: 1
-      inSlope: -0.0000029089942
-      outSlope: -0.0000029089942
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 1
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
+      time: 0.9908313
+      value: 0.70171803
       inSlope: 0.00000088331325
       outSlope: 0.00000088331325
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.20725034
       outWeight: 0
+    - serializedVersion: 3
+      time: 0.99425846
+      value: 0.70171803
+      inSlope: -0.0000029089942
+      outSlope: -0.0000029089942
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
