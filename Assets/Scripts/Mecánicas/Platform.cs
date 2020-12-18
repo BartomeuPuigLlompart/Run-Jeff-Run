@@ -23,6 +23,7 @@ public class Platform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player) playerJump = player.GetComponent<Jump>();
         effector.rotationalOffset = 
             (playerJump.IsDashing()) 
             ? 180f : 0;
