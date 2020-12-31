@@ -1,0 +1,37 @@
+- SoundVolume, float //Volumen de audio, valor entre 0 y 1
+
+- Char1, int //Personaje 1 (default), siempre será 1
+- Char2, int //Personaje 2, 1 = desbloqueado, 0 = bloqueado
+- Char3, int //Personaje 3, 1 = desbloqueado, 0 = bloqueado
+- Char4, int //Personaje 4, 1 = desbloqueado, 0 = bloqueado
+- Char5, int //Personaje 5, 1 = desbloqueado, 0 = bloqueado
+- Char6, int //Personaje 6, 1 = desbloqueado, 0 = bloqueado
+- Char7, int //Personaje 7, 1 = desbloqueado, 0 = bloqueado
+- Char8, int //Personaje 8, 1 = desbloqueado, 0 = bloqueado
+- Char9, int //Personaje 9, 1 = desbloqueado, 0 = bloqueado
+- Char10, int //Personaje 10, 1 = desbloqueado, 0 = bloqueado
+- CurrChar, int //El personaje actualmente en uso. El valor corresponde al su slot en la tienda
+
+- House1, int //Casa 1 (default), siempre será 1
+- House2, int //Casa 2, 1 = desbloqueada, 0 = bloqueada
+- House3, int //Casa 3, 1 = desbloqueada, 0 = bloqueada
+- House4, int //Casa 4, 1 = desbloqueada, 0 = bloqueada
+- House5, int //Casa 5, 1 = desbloqueada, 0 = bloqueada
+- House6, int //Casa 6, 1 = desbloqueada, 0 = bloqueada
+- House7, int //Casa 7, 1 = desbloqueada, 0 = bloqueada
+- House8, int //Casa 8, 1 = desbloqueada, 0 = bloqueada
+- House9, int //Casa 9, 1 = desbloqueada, 0 = bloqueada
+- House10, int //Casa 10, 1 = desbloqueada, 0 = bloqueada
+- CurrHouse, int //La casa actualmente en uso. El valor corresponde al su slot en la tienda
+
+- Enemy1, int //Enemigo 1 (default), siempre será 1
+- Enemy2, int //Enemigo 2, 1 = desbloqueado, 0 = bloqueado
+- Enemy3, int //Enemigo 3, 1 = desbloqueado, 0 = bloqueado
+- Enemy4, int //Enemigo 4, 1 = desbloqueado, 0 = bloqueado
+- Enemy5, int //Enemigo 5, 1 = desbloqueado, 0 = bloqueado
+- Enemy6, int //Enemigo 6, 1 = desbloqueado, 0 = bloqueado
+- Enemy7, int //Enemigo 7, 1 = desbloqueado, 0 = bloqueado
+- Enemy8, int //Enemigo 8, 1 = desbloqueado, 0 = bloqueado
+- Enemy9, int //Enemigo 9, 1 = desbloqueado, 0 = bloqueado
+- Enemy10, int //Enemigo 10, 1 = desbloqueado, 0 = bloqueado
+- CurrEnemy, int //El enemigo actualmente en uso. El valor corresponde al su slot en la tienda
