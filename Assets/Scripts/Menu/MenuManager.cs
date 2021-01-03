@@ -14,6 +14,8 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.GetInt("CurrChar", 1);
+
         menu.SetActive(false);
         levels.SetActive(false);
         shop.SetActive(false);
