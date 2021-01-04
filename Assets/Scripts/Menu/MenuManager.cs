@@ -11,10 +11,14 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject levels;
     [SerializeField] private GameObject shop;
 
+    [SerializeField] GameObject areYouSureObject;
+
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.GetInt("CurrChar", 1);
+        PlayerPrefs.SetInt("Char1", 1);
+        PlayerPrefs.SetInt("House1", 1);
+        PlayerPrefs.SetInt("Enemy1", 1);
 
         menu.SetActive(false);
         levels.SetActive(false);
@@ -31,9 +35,12 @@ public class MenuManager : MonoBehaviour
 
     public void GoToMenu()
     {
-        menu.SetActive(true);
-        levels.SetActive(false);
-        shop.SetActive(false);
+        if(!areYouSureObject.active)
+        {
+            menu.SetActive(true);
+            levels.SetActive(false);
+            shop.SetActive(false);
+        }
     }
 
     public void GoToLevels()

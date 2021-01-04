@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum ObjectType { Character, House, Enemy };
+
 public class SlotItem : MonoBehaviour
 {
-    enum ObjectType { Character, House, Enemy};
-
     [SerializeField] int objectID;
     [SerializeField] ObjectType objectType;
     [SerializeField] bool active, unlocked;
@@ -14,15 +14,17 @@ public class SlotItem : MonoBehaviour
     [SerializeField] Color activeColor, inactiveColor,
         imageActiveColor, imageInactiveColor;
 
+    [SerializeField] GameObject areYouSureObject;
+
     bool oldActive, oldUnlocked;
 
     Image objectImage;
 
-    GameObject areYouSureObject;
+    
     AreYouSureShopPanel areYouSure;
 
     //Variables for its child
-    GameObject slotChild;
+    GameObject slotChild, textChild;
     RectTransform childRectTransform;
 
     float lockedLeft = 96.07938f, lockedRight = 96.07938f,
@@ -33,17 +35,45 @@ public class SlotItem : MonoBehaviour
 
     Image childImage;
 
+    string idBuff, typeBuff;
+
     // Start is called before the first frame update
     void Start()
     {
-        if (areYouSureObject) areYouSure = areYouSureObject.GetComponent<AreYouSureShopPanel>();
-
-        switch(objectType)
+        //Set the buffs for the PlayerPrefs
+        idBuff = objectID.ToString();
+        switch (objectType)
         {
             case ObjectType.Character:
-                active = (PlayerPrefs.GetInt("CurrChar", 1) == objectID); //Active if it's already activated
-                unlocked = (objectID != 1 && PlayerPrefs.GetInt("Char" + objectID.ToString(), 1) == 1); //Check if it's already unlocked and if it's not the default skin
+                typeBuff = "Char";
+                break;
+            case ObjectType.House:
+                typeBuff = "House";
+                break;
+            case ObjectType.Enemy:
+                typeBuff = "Enemy";
+                break;
+            default: break;
+        }
 
+        ////Debug Only: It sets the PlayerPrefs
+        //if(objectID != 1) PlayerPrefs.SetInt("Char" + objectID.ToString(), 0);
+        //else PlayerPrefs.SetInt("Char1", 1);
+        //PlayerPrefs.SetInt("CurrChar", 1);
+
+        //Get the "Are you sure?" Panel
+        if (areYouSureObject) areYouSure = areYouSureObject.GetComponent<AreYouSureShopPanel>();
+
+
+
+        //Get the info unlocked/active from PlayerPrefs
+        active = (PlayerPrefs.GetInt("Curr" + typeBuff, 1) == objectID); //Active if it's already activated
+        unlocked = (PlayerPrefs.GetInt(typeBuff + idBuff, 1) == 1); //Check if it's already unlocked and if it's not the default skin
+        if (objectID == 1) unlocked = true;
+
+        switch (objectType)
+        {
+            case ObjectType.Character:
                 //Variables for the character image
                 lockedLeft = 96.07938f;
                 lockedRight = 96.07938f;
@@ -56,23 +86,56 @@ public class SlotItem : MonoBehaviour
                 unlockedBottom = 64.57643f;
                 break;
             case ObjectType.House:
-                active = (PlayerPrefs.GetInt("CurrHouse", 1) == objectID); //Active if it's already activated
-                unlocked = (objectID != 1 && PlayerPrefs.GetInt("House" + objectID.ToString(), 1) == 1); //Check if it's already unlocked and if it's not the default skin
                 break;
             case ObjectType.Enemy:
-                active = (PlayerPrefs.GetInt("CurrEnemy", 1) == objectID); //Active if it's already activated
-                unlocked = (objectID != 1 && PlayerPrefs.GetInt("Enemy" + objectID.ToString(), 1) == 1); //Check if it's already unlocked and if it's not the default skin
                 break;
         }
 
-        objectImage = gameObject.GetComponent<Image>();
+        oldActive = active;
+        oldUnlocked = unlocked;
 
+        //Get the image for change the color later
+        objectImage = gameObject.GetComponent<Image>();
+        
+        //Get the info of its child
         slotChild = gameObject.transform.GetChild(0).gameObject;
+        textChild = gameObject.transform.GetChild(1).gameObject;
 
         if(slotChild)
         {
             childRectTransform = slotChild.GetComponent<RectTransform>();
             childImage = slotChild.GetComponent<Image>();
+
+            //Set already the info from unlocked/active  values
+            if (active)
+            {
+                //Set the color of activated once
+                objectImage.color = activeColor;
+                childImage.color = imageActiveColor;
+            }
+            else
+            {
+                //Set the color of inactivated once
+                objectImage.color = inactiveColor;
+                childImage.color = imageInactiveColor;
+            }
+
+            if(unlocked)
+            {
+                SetLeft(childRectTransform, unlockedLeft);
+                SetRight(childRectTransform, unlockedRight);
+                SetTop(childRectTransform, unlockedTop);
+                SetBottom(childRectTransform, unlockedBottom);
+            }
+            else
+            {
+                SetLeft(childRectTransform, lockedLeft);
+                SetRight(childRectTransform, lockedRight);
+                SetTop(childRectTransform, lockedTop);
+                SetBottom(childRectTransform, lockedBottom);
+            }
+            textChild.SetActive(!unlocked);
+
         }
     }
 
@@ -104,6 +167,7 @@ public class SlotItem : MonoBehaviour
             SetRight(childRectTransform, unlockedRight);
             SetTop(childRectTransform, unlockedTop);
             SetBottom(childRectTransform, unlockedBottom);
+            textChild.SetActive(false);
         }
         else if(!unlocked && oldUnlocked)
         {
@@ -111,34 +175,39 @@ public class SlotItem : MonoBehaviour
             SetRight(childRectTransform, lockedRight);
             SetTop(childRectTransform, lockedTop);
             SetBottom(childRectTransform, lockedBottom);
+            textChild.SetActive(true);
         }
 
         oldActive = active;
         oldUnlocked = unlocked;
 
         //Check at any moment if the item is still active
-        active = (PlayerPrefs.GetInt("CurrChar", 1) == objectID);
+        active = (PlayerPrefs.GetInt("Curr" + typeBuff, 1) == objectID);
+        unlocked = (PlayerPrefs.GetInt(typeBuff + idBuff, 0) == 1);
     }
 
     public void Pressed()
     {
-        if(!unlocked)
+        if(!areYouSureObject.active)
         {
-            //Print the "are you sure?" panel
-            areYouSureObject.SetActive(true);
-            areYouSure.PrintAndGetInfo(objectID);
-        }
-        else
-        {
-            if(!active)
+            if (!unlocked)
             {
-                //Set this subject as active and save it in its PlayerPref
-                //active = true;
-                PlayerPrefs.SetInt("CurrChar", objectID);
+                //Print the "are you sure?" panel
+                areYouSureObject.SetActive(true);
+                areYouSure.PrintAndGetInfo(objectID, objectType);
             }
             else
             {
-                //Nothing, it's already activated
+                if (!active)
+                {
+                    //Set this subject as active and save it in its PlayerPref
+                    //active = true;
+                    PlayerPrefs.SetInt("Curr" + typeBuff, objectID);
+                }
+                else
+                {
+                    //Nothing, it's already activated
+                }
             }
         }
     }

@@ -7,7 +7,14 @@ public class AreYouSureShopPanel : MonoBehaviour
 {
     //Variables for its child
     GameObject yesChild, noChild;
-    int currItemInt;
+    int currItemId;
+    ObjectType currItemType;
+
+    string idBuff, typeBuff;
+
+    //Variables of the item selected
+    GameObject itemObject;
+    SlotItem item;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +30,7 @@ public class AreYouSureShopPanel : MonoBehaviour
         yesTrigger.triggers.Add(yesEntry);
 
         //NO BUTTON
-        EventTrigger noTrigger = yesChild.GetComponent<EventTrigger>();
+        EventTrigger noTrigger = noChild.GetComponent<EventTrigger>();
         EventTrigger.Entry noEntry = new EventTrigger.Entry();
         noEntry.eventID = EventTriggerType.PointerDown;
         noEntry.callback.AddListener((data) => { PressedNo((PointerEventData)data); });
@@ -37,18 +44,40 @@ public class AreYouSureShopPanel : MonoBehaviour
        
     }
 
-    public void PrintAndGetInfo(int id)
+    public void PrintAndGetInfo(int id, ObjectType type)
     {
-        currItemInt = id;
+        currItemId = id;
+        currItemType = type;
+
+        idBuff = currItemId.ToString();
+        switch(type)
+        {
+            case ObjectType.Character:
+                typeBuff = "Char";
+                break;
+            case ObjectType.House:
+                typeBuff = "House";
+                break;
+            case ObjectType.Enemy:
+                typeBuff = "Enemy";
+                break;
+            default: break;
+        }
+
+        itemObject = GameObject.Find(typeBuff + idBuff);
+
+        if (itemObject) item = itemObject.GetComponent<SlotItem>();
     }
 
     public void PressedYes(PointerEventData data)
     {
-        Debug.Log("OnPointerDownDelegate called.");
+        PlayerPrefs.SetInt(typeBuff + idBuff, 1);
+
+        gameObject.SetActive(false);
     }
 
     public void PressedNo(PointerEventData data)
     {
-        Debug.Log("OnPointerDownDelegate called.");
+        gameObject.SetActive(false);
     }
 }
