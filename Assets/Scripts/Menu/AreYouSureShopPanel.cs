@@ -61,6 +61,9 @@ public class AreYouSureShopPanel : MonoBehaviour
             case ObjectType.Enemy:
                 typeBuff = "Enemy";
                 break;
+            case ObjectType.Level:
+                typeBuff = "Level";
+                break;
             default: break;
         }
 

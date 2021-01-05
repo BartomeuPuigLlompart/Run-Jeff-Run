@@ -22,7 +22,7 @@
 - House8, int //Casa 8, 1 = desbloqueada, 0 = bloqueada
 - House9, int //Casa 9, 1 = desbloqueada, 0 = bloqueada
 - House10, int //Casa 10, 1 = desbloqueada, 0 = bloqueada
-- CurrHouse, int //La casa actualmente en uso. El valor corresponde al su slot en la tienda
+- CurrHouse, int //La casa actualmente en uso. El valor corresponde a su slot en la tienda
 
 - Enemy1, int //Enemigo 1 (default), siempre será 1
 - Enemy2, int //Enemigo 2, 1 = desbloqueado, 0 = bloqueado
@@ -34,4 +34,9 @@
 - Enemy8, int //Enemigo 8, 1 = desbloqueado, 0 = bloqueado
 - Enemy9, int //Enemigo 9, 1 = desbloqueado, 0 = bloqueado
 - Enemy10, int //Enemigo 10, 1 = desbloqueado, 0 = bloqueado
-- CurrEnemy, int //El enemigo actualmente en uso. El valor corresponde al su slot en la tienda
+- CurrEnemy, int //El enemigo actualmente en uso. El valor corresponde a su slot en la tienda
+
+- Level2, int //Nivel 2, 1 = desbloqueado, 0 = bloqueado
+- Level3, int //Nivel 3, 1 = desbloqueado, 0 = bloqueado
+- Level4, int //Nivel 4, 1 = desbloqueado, 0 = bloqueado
+- CurrLevel, int //El nivel actual o el último jugado
