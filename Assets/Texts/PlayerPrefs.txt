@@ -1,5 +1,11 @@
+//VARIABLES DEL JUGADOR
+- CurrCoins, int //Valor actual del dinero cobrado por el jugador
+
+//VARIABLES PARA EL SISTEMA
 - SoundVolume, float //Volumen de audio, valor entre 0 y 1
 
+
+//VARIABLES PARA LAS TIENDAS
 - Char1, int //Personaje 1 (default), siempre será 1
 - Char2, int //Personaje 2, 1 = desbloqueado, 0 = bloqueado
 - Char3, int //Personaje 3, 1 = desbloqueado, 0 = bloqueado

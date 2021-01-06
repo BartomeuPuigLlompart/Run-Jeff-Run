@@ -9,12 +9,14 @@ public class AreYouSureShopPanel : MonoBehaviour
     GameObject yesChild, noChild;
     int currItemId;
     ObjectType currItemType;
+    int currItemPrice;
 
     string idBuff, typeBuff;
 
     //Variables of the item selected
     GameObject itemObject;
     SlotItem item;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -44,10 +46,11 @@ public class AreYouSureShopPanel : MonoBehaviour
        
     }
 
-    public void PrintAndGetInfo(int id, ObjectType type)
+    public void PrintAndGetInfo(int id, ObjectType type, int price)
     {
         currItemId = id;
         currItemType = type;
+        currItemPrice = price;
 
         idBuff = currItemId.ToString();
         switch(type)
@@ -74,7 +77,10 @@ public class AreYouSureShopPanel : MonoBehaviour
 
     public void PressedYes(PointerEventData data)
     {
+        int newCoins = PlayerPrefs.GetInt("CurrCoins", 0) - currItemPrice;
+
         PlayerPrefs.SetInt(typeBuff + idBuff, 1);
+        PlayerPrefs.SetInt("CurrCoins", newCoins);
 
         gameObject.SetActive(false);
     }

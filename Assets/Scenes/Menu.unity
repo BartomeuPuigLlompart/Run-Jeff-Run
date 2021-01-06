@@ -330,7 +330,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &17496125
 RectTransform:
   m_ObjectHideFlags: 0
@@ -349,6 +349,8 @@ RectTransform:
   - {fileID: 1272422024}
   - {fileID: 1563707276}
   - {fileID: 895872531}
+  - {fileID: 47645087}
+  - {fileID: 102720647}
   m_Father: {fileID: 1671422118}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -492,6 +494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 10
   objectType: 0
+  objectPrice: 1000
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -499,6 +502,84 @@ MonoBehaviour:
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
   imageInactiveColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 1}
   areYouSureObject: {fileID: 12162885}
+--- !u!1 &47645086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 47645087}
+  - component: {fileID: 47645089}
+  - component: {fileID: 47645088}
+  m_Layer: 5
+  m_Name: CoinsValue (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &47645087
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47645086}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 17496125}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 862.10004, y: 460.80002}
+  m_SizeDelta: {x: 387.64514, y: 81.35762}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &47645088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47645086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.8862745, g: 0.10980392, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 1d417db6e21a4a040aa098866782cc8b, type: 3}
+    m_FontSize: 71
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 71
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 999999999
+--- !u!222 &47645089
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47645086}
+  m_CullTransparentMesh: 0
 --- !u!1 &63822070
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,6 +867,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 8
   objectType: 2
+  objectPrice: 800
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -944,6 +1026,80 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91508057}
+  m_CullTransparentMesh: 0
+--- !u!1 &102720646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 102720647}
+  - component: {fileID: 102720649}
+  - component: {fileID: 102720648}
+  m_Layer: 5
+  m_Name: CoinIcon (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &102720647
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102720646}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 17496125}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 595, y: 465}
+  m_SizeDelta: {x: 75, y: 75}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &102720648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102720646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: bde5b20406df933409ed7ba958d04e0e, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &102720649
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102720646}
   m_CullTransparentMesh: 0
 --- !u!1 &120873900
 GameObject:
@@ -1722,8 +1878,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 37, y: 369}
-  m_SizeDelta: {x: 27.475098, y: -629.7115}
+  m_AnchoredPosition: {x: 37, y: 312}
+  m_SizeDelta: {x: 27.475098, y: -672.3557}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &229148948
 MonoBehaviour:
@@ -2368,6 +2524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 3
   objectType: 1
+  objectPrice: 300
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -2510,6 +2667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 9
   objectType: 1
+  objectPrice: 900
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -3186,6 +3344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 6
   objectType: 1
+  objectPrice: 600
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -3262,7 +3421,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 999.999.999
+  m_Text: 999999999
 --- !u!222 &521820142
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3484,6 +3643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 8
   objectType: 1
+  objectPrice: 800
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -3901,6 +4061,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 5
   objectType: 1
+  objectPrice: 500
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -4614,6 +4775,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 2
   objectType: 2
+  objectPrice: 250
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -4949,6 +5111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 4
   objectType: 2
+  objectPrice: 400
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -5317,6 +5480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 5
   objectType: 2
+  objectPrice: 500
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -5883,6 +6047,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 9
   objectType: 2
+  objectPrice: 900
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -6063,6 +6228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 7
   objectType: 0
+  objectPrice: 700
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -6242,6 +6408,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 4
   objectType: 3
+  objectPrice: 50000
   unlocked: 0
   unlockedColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   lockedColor: {r: 0.6509804, g: 0.6509804, b: 0.6509804, a: 1}
@@ -6572,6 +6739,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 1
   objectType: 0
+  objectPrice: 0
   active: 1
   unlocked: 1
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -7844,6 +8012,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 10
   objectType: 1
+  objectPrice: 1000
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -8257,6 +8426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 2
   objectType: 3
+  objectPrice: 10000
   unlocked: 0
   unlockedColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   lockedColor: {r: 0.6509804, g: 0.6509804, b: 0.6509804, a: 1}
@@ -8711,6 +8881,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 1
   objectType: 2
+  objectPrice: 0
   active: 1
   unlocked: 1
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -8807,7 +8978,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1342889013
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8978,6 +9149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 2
   objectType: 0
+  objectPrice: 250
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -9120,6 +9292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 7
   objectType: 2
+  objectPrice: 700
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -9262,6 +9435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 6
   objectType: 0
+  objectPrice: 600
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -9478,6 +9652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 10
   objectType: 2
+  objectPrice: 1000
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -9620,6 +9795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 3
   objectType: 0
+  objectPrice: 300
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -9762,6 +9938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 6
   objectType: 2
+  objectPrice: 600
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -10130,6 +10307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 7
   objectType: 1
+  objectPrice: 700
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -10506,6 +10684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 3
   objectType: 3
+  objectPrice: 20000
   unlocked: 0
   unlockedColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   lockedColor: {r: 0.6509804, g: 0.6509804, b: 0.6509804, a: 1}
@@ -10583,6 +10762,10 @@ MonoBehaviour:
   levels: {fileID: 17496124}
   shop: {fileID: 1342889012}
   areYouSureObject: {fileID: 12162885}
+  coinsTexts:
+  - {fileID: 521820141}
+  - {fileID: 1746168241}
+  - {fileID: 47645088}
 --- !u!4 &1586592982
 Transform:
   m_ObjectHideFlags: 0
@@ -11032,6 +11215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 3
   objectType: 2
+  objectPrice: 300
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -11432,7 +11616,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 999.999.999
+  m_Text: 999999999
 --- !u!222 &1746168242
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12007,6 +12191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 4
   objectType: 1
+  objectPrice: 400
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -12149,6 +12334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 5
   objectType: 0
+  objectPrice: 500
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -12291,6 +12477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 2
   objectType: 1
+  objectPrice: 250
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -12495,6 +12682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 1
   objectType: 1
+  objectPrice: 0
   active: 1
   unlocked: 1
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -12979,6 +13167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 8
   objectType: 0
+  objectPrice: 800
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -13195,6 +13384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 9
   objectType: 0
+  objectPrice: 900
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
@@ -13772,6 +13962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: 4
   objectType: 0
+  objectPrice: 400
   active: 0
   unlocked: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}

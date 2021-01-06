@@ -7,6 +7,7 @@ public class SlotLevel : MonoBehaviour
 {
     [SerializeField] int objectID;
     [SerializeField] ObjectType objectType;
+    [SerializeField] int objectPrice;
     [SerializeField] bool unlocked;
 
     [SerializeField]
@@ -83,7 +84,14 @@ public class SlotLevel : MonoBehaviour
                 objectImage.color = lockedColor;
                 childImage.color = imageLockedColor;
             }
-            textChild.SetActive(!unlocked);
+
+            //Make sure textChild exists 
+            if (textChild)
+            {
+                //Set the price, then show it if not bought
+                textChild.GetComponent<Text>().text = objectPrice.ToString();
+                textChild.SetActive(!unlocked);
+            }
         }
     }
 
@@ -126,11 +134,18 @@ public class SlotLevel : MonoBehaviour
     {
         if (!areYouSureObject.active)
         {
+            //Check if the player didn't buy it yet
             if (!unlocked)
             {
-                //Print the "are you sure?" panel
-                areYouSureObject.SetActive(true);
-                areYouSure.PrintAndGetInfo(objectID, objectType);
+                int currCoins = PlayerPrefs.GetInt("CurrCoins", 0);
+
+                //Check if the player has enough coins to get it
+                if (currCoins >= objectPrice)
+                {
+                    //Print the "are you sure?" panel
+                    areYouSureObject.SetActive(true);
+                    areYouSure.PrintAndGetInfo(objectID, objectType, objectPrice);
+                }
             }
             else
             {

@@ -9,6 +9,7 @@ public class SlotItem : MonoBehaviour
 {
     [SerializeField] int objectID;
     [SerializeField] ObjectType objectType;
+    [SerializeField] int objectPrice;
     [SerializeField] bool active, unlocked;
 
     [SerializeField] Color activeColor, inactiveColor,
@@ -101,6 +102,7 @@ public class SlotItem : MonoBehaviour
         slotChild = gameObject.transform.GetChild(0).gameObject;
         textChild = gameObject.transform.GetChild(1).gameObject;
 
+        //Make sure slotChild exists
         if(slotChild)
         {
             childRectTransform = slotChild.GetComponent<RectTransform>();
@@ -134,8 +136,14 @@ public class SlotItem : MonoBehaviour
                 SetTop(childRectTransform, lockedTop);
                 SetBottom(childRectTransform, lockedBottom);
             }
-            textChild.SetActive(!unlocked);
 
+            //Make sure textChild exists 
+            if(textChild)
+            {
+                //Set the price, then show it if not bought
+                textChild.GetComponent<Text>().text = objectPrice.ToString();
+                textChild.SetActive(!unlocked);
+            }            
         }
     }
 
@@ -190,11 +198,18 @@ public class SlotItem : MonoBehaviour
     {
         if(!areYouSureObject.active)
         {
+            //Check if the player didn't buy it yet
             if (!unlocked)
             {
-                //Print the "are you sure?" panel
-                areYouSureObject.SetActive(true);
-                areYouSure.PrintAndGetInfo(objectID, objectType);
+                int currCoins = PlayerPrefs.GetInt("CurrCoins", 0);
+
+                //Check if the player has enough coins to get it
+                if(currCoins >= objectPrice)
+                {
+                    //Print the "are you sure?" panel
+                    areYouSureObject.SetActive(true);
+                    areYouSure.PrintAndGetInfo(objectID, objectType, objectPrice);
+                }
             }
             else
             {
