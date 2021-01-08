@@ -17,8 +17,12 @@ public class SignInScript : MonoBehaviour
     FirebaseDatabase _database;
     DatabaseReference reference;
 
-    [SerializeField] Text email, playerEmail;
-    [SerializeField] InputField password, passwordConfirmation;
+    [SerializeField] Text email, playerEmail, logInEmail;
+    [SerializeField] InputField password, passwordConfirmation, logInPassword;
+
+    [SerializeField] GameObject signUp, invitePlayer, logIn;
+
+    public static User tutor, jugador;
 
 
     // Use this for initialization
@@ -30,8 +34,41 @@ public class SignInScript : MonoBehaviour
         reference = _database.RootReference;
     }
 
+    public void tutorLogIn()
+    {
+        firebaseAuth.SignInWithEmailAndPasswordAsync(logInEmail.text, logInPassword.text).ContinueWith(task => {
+            if (task.IsCanceled)
+            {
+                Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
+                return;
+            }
+            if (task.IsFaulted)
+            {
+                Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
+                return;
+            }
 
-    public void SignIn()
+            Firebase.Auth.FirebaseUser newUser = task.Result;
+            Debug.LogFormat("User signed in successfully: {0} ({1})",
+                newUser.DisplayName, newUser.UserId);
+
+            reference.Child("users").Child(newUser.UserId).Child("rol").GetValueAsync().ContinueWith(_task => {
+                if (_task.IsFaulted)
+                {
+                    // Handle the error...
+                }
+                else if (_task.IsCompleted)
+                {
+                    DataSnapshot snapshot = _task.Result;
+                    if (snapshot.GetValue(true).ToString() == "Player")
+                        Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: You don't have permission to Log In Here");
+                }
+            });
+            
+        });
+    }
+
+    public void SignUp()
     {
         if(password.text != passwordConfirmation.text)
         {
@@ -63,18 +100,19 @@ public class SignInScript : MonoBehaviour
 
     private void writeNewUser(string userId, string email)
     {
-        User user = new User("Tutor", email, "none", userId, "none");
-        string json = JsonUtility.ToJson(user);
+        tutor = new User("Tutor", email, userId, "none");
+        string json = JsonUtility.ToJson(tutor);
         reference.Child("users").Child(userId).SetRawJsonValueAsync(json).ContinueWith(task =>
         {
             if (task.IsFaulted) Debug.Log("F in the chat");
             else if (task.IsCompleted)
             {
-                PlayerPrefs.SetString("email", email);
                 PlayerPrefs.SetString("userId", userId);
             }
             
         });
+
+        goToInvitePlayer();
     }
 
     public void setPlayer()
@@ -110,8 +148,8 @@ public class SignInScript : MonoBehaviour
 
     private void writeNewPlayer(string userId, string email)
     {
-        User user = new User("Tutor", email, "none", userId, "none");
-        string json = JsonUtility.ToJson(user);
+        jugador = new User("Player", email, userId, tutor.id);
+        string json = JsonUtility.ToJson(jugador);
         reference.Child("users").Child(userId).SetRawJsonValueAsync(json).ContinueWith(task =>
         {
             if (task.IsFaulted) Debug.Log("F in the chat");
@@ -121,6 +159,38 @@ public class SignInScript : MonoBehaviour
             }
 
         });
+        tutor.idOpuesto = userId;
+        json = JsonUtility.ToJson(tutor);
+        reference.Child("users").Child(tutor.id).SetRawJsonValueAsync(json).ContinueWith(task =>
+        {
+            if (task.IsFaulted) Debug.Log("F in the chat");
+            else if (task.IsCompleted)
+            {
+                Debug.Log("Ye");
+                goToLogIn();
+            }
+
+        });
     }
 
+    public void goToSignUp()
+    {
+        signUp.SetActive(true);
+        logIn.SetActive(false);
+        invitePlayer.SetActive(false);
+    }
+
+    public void goToInvitePlayer()
+    {
+        signUp.SetActive(false);
+        logIn.SetActive(false);
+        invitePlayer.SetActive(true);
+    }
+
+    public void goToLogIn()
+    {
+        signUp.SetActive(false);
+        logIn.SetActive(true);
+        invitePlayer.SetActive(false);
+    }
 }
