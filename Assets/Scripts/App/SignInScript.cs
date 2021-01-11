@@ -61,12 +61,56 @@ public class SignInScript : MonoBehaviour
                 {
                     DataSnapshot snapshot = _task.Result;
                     if (snapshot.GetValue(true).ToString() == "Player")
+                    {
                         Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: You don't have permission to Log In Here");
+                        firebaseAuth.SignOut();
+                    }
                 }
             });
             
         });
     }
+    public void playerLogIn()
+    {
+        firebaseAuth.SignInWithEmailAndPasswordAsync(email.text, password.text).ContinueWith(task => {
+            if (task.IsCanceled)
+            {
+                Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
+                return;
+            }
+            if (task.IsFaulted)
+            {
+                Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
+                return;
+            }
+
+            Firebase.Auth.FirebaseUser newUser = task.Result;
+            Debug.LogFormat("User signed in successfully: {0} ({1})",
+                newUser.DisplayName, newUser.UserId);
+
+            reference.Child("users").Child(newUser.UserId).Child("rol").GetValueAsync().ContinueWith(_task => {
+                if (_task.IsFaulted)
+                {
+                    // Handle the error...
+                }
+                else if (_task.IsCompleted)
+                {
+                    DataSnapshot snapshot = _task.Result;
+                    if (snapshot.GetValue(true).ToString() == "Tutor")
+                    {
+                        Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: You don't have permission to Log In Here");
+                        firebaseAuth.SignOut();
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene("Menu");
+                    }
+                }
+            });
+
+        });
+    }
+
 
     public void SignUp()
     {
@@ -173,24 +217,60 @@ public class SignInScript : MonoBehaviour
         });
     }
 
+    public void resetPassword()
+    {
+        reference.Child("users").GetValueAsync().ContinueWith(_task =>
+        {
+            if (_task.IsFaulted)
+            {
+                // Handle the error...
+                Debug.Log("F in the chat");
+            }
+            else if (_task.IsCompleted)
+            {
+                DataSnapshot snapshot = _task.Result;
+                foreach (DataSnapshot s in snapshot.Children)
+                {
+                    Debug.Log(s.Child("correo").GetValue(true).ToString());
+                    if (s.Child("correo").GetValue(true).ToString() == logInEmail.text &&
+                    s.Child("rol").GetValue(true).ToString() == "Player")
+                    {
+                        firebaseAuth.SendPasswordResetEmailAsync(logInEmail.text).ContinueWith((authTask) =>
+                        {
+                            if (authTask.IsFaulted) Debug.Log("F in the chat");
+                            else if (authTask.IsCompleted)
+                            {
+                                Debug.Log("Reset email sent successfully!\nPlease follow the instructions sent to you via email!");
+                                goToSignUp();
+                                return;
+                            }
+                        });
+                    }
+                }
+                Debug.Log("You are not registered as a player. If you want to play, find a tutor if you don't have one and sign up.");
+                goToSignUp();
+            }
+        });
+    }
+
     public void goToSignUp()
     {
         signUp.SetActive(true);
         logIn.SetActive(false);
-        invitePlayer.SetActive(false);
+        if(invitePlayer != null)invitePlayer.SetActive(false);
     }
 
     public void goToInvitePlayer()
     {
         signUp.SetActive(false);
         logIn.SetActive(false);
-        invitePlayer.SetActive(true);
+        if (invitePlayer != null) invitePlayer.SetActive(true);
     }
 
     public void goToLogIn()
     {
         signUp.SetActive(false);
         logIn.SetActive(true);
-        invitePlayer.SetActive(false);
+        if (invitePlayer != null) invitePlayer.SetActive(false);
     }
 }
