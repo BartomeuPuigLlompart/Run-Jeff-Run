@@ -22,7 +22,7 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         //Debug Only
-        //PlayerPrefs.SetInt("CurrCoins", 350);
+        //PlayerPrefs.SetInt("CurrCoins", 650);
         playerCoins = PlayerPrefs.GetInt("CurrCoins", 0);
 
         //Set the values
