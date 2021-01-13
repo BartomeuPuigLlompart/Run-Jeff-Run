@@ -101,6 +101,8 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             FindObjectOfType<AudioManager>().Play("CoinCollect");
 
+            //Update the PlayerPref of total Coins
+            PlayerPrefs.SetInt("CurrCoins", PlayerPrefs.GetInt("CurrCoins", 0) + 1); //CurrCoins++
         }
     }
 }

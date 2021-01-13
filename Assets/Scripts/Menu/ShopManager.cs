@@ -23,6 +23,8 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private Color activeColor;
     [SerializeField] private Color inactiveColor;
 
+    [SerializeField] private GameObject areYouSureObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,55 +48,64 @@ public class ShopManager : MonoBehaviour
 
     public void GoToCharacter()
     {
-        //Shop Contents
-        character.SetActive(true);
-        house.SetActive(false);
-        enemy.SetActive(false);
+        if(!areYouSureObject.active)
+        {
+            //Shop Contents
+            character.SetActive(true);
+            house.SetActive(false);
+            enemy.SetActive(false);
 
-        //Top Panels
-        characterPanel.SetActive(true);
-        housePanel.SetActive(false);
-        enemyPanel.SetActive(false);
+            //Top Panels
+            characterPanel.SetActive(true);
+            housePanel.SetActive(false);
+            enemyPanel.SetActive(false);
 
-        //Color Buttons
-        characterButton.GetComponent<Image>().color = activeColor;
-        houseButton.GetComponent<Image>().color = inactiveColor;
-        enemyButton.GetComponent<Image>().color = inactiveColor;
+            //Color Buttons
+            characterButton.GetComponent<Image>().color = activeColor;
+            houseButton.GetComponent<Image>().color = inactiveColor;
+            enemyButton.GetComponent<Image>().color = inactiveColor;
+        }
     }
 
     public void GoToHouse()
     {
-        //Shop Contents
-        house.SetActive(true);
-        character.SetActive(false);
-        enemy.SetActive(false);
+        if (!areYouSureObject.active)
+        {
+            //Shop Contents
+            house.SetActive(true);
+            character.SetActive(false);
+            enemy.SetActive(false);
 
-        //Top Panels
-        characterPanel.SetActive(false);
-        housePanel.SetActive(true);
-        enemyPanel.SetActive(false);
+            //Top Panels
+            characterPanel.SetActive(false);
+            housePanel.SetActive(true);
+            enemyPanel.SetActive(false);
 
-        //Color Buttons
-        characterButton.GetComponent<Image>().color = inactiveColor;
-        houseButton.GetComponent<Image>().color = activeColor;
-        enemyButton.GetComponent<Image>().color = inactiveColor;
+            //Color Buttons
+            characterButton.GetComponent<Image>().color = inactiveColor;
+            houseButton.GetComponent<Image>().color = activeColor;
+            enemyButton.GetComponent<Image>().color = inactiveColor;
+        }
     }
 
     public void GoToEnemy()
     {
-        //Shop Contents
-        enemy.SetActive(true);
-        character.SetActive(false);
-        house.SetActive(false);
+        if (!areYouSureObject.active)
+        {
+            //Shop Contents
+            enemy.SetActive(true);
+            character.SetActive(false);
+            house.SetActive(false);
 
-        //Top Panels
-        characterPanel.SetActive(false);
-        housePanel.SetActive(false);
-        enemyPanel.SetActive(true);
+            //Top Panels
+            characterPanel.SetActive(false);
+            housePanel.SetActive(false);
+            enemyPanel.SetActive(true);
 
-        //Color Buttons
-        characterButton.GetComponent<Image>().color = inactiveColor;
-        houseButton.GetComponent<Image>().color = inactiveColor;
-        enemyButton.GetComponent<Image>().color = activeColor;
+            //Color Buttons
+            characterButton.GetComponent<Image>().color = inactiveColor;
+            houseButton.GetComponent<Image>().color = inactiveColor;
+            enemyButton.GetComponent<Image>().color = activeColor;
+        }    
     }
 }
