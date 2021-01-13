@@ -216,8 +216,20 @@ public class SignInScript : MonoBehaviour
     private void writeNewPlayer(string userId, string email)
     {
         jugador = new User("Player", email, userId, tutor.id);
+        jugador.player = new User.Player();
+        jugador.player.createNewDefaultPlayer();
         string json = JsonUtility.ToJson(jugador);
         reference.Child("users").Child(userId).SetRawJsonValueAsync(json).ContinueWith(task =>
+        {
+            if (task.IsFaulted) Debug.Log("F in the chat");
+            else if (task.IsCompleted)
+            {
+                Debug.Log("Ye");
+            }
+
+        });
+        json = JsonUtility.ToJson(jugador.player);
+        reference.Child("users").Child(userId).Child("player").SetRawJsonValueAsync(json).ContinueWith(task =>
         {
             if (task.IsFaulted) Debug.Log("F in the chat");
             else if (task.IsCompleted)

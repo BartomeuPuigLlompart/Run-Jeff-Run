@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using System.Threading.Tasks;
+using Firebase.Auth;
+using Firebase;
+using Firebase.Database;
 public class MenuManager : MonoBehaviour
 {
+    FirebaseAuth firebaseAuth;
+    FirebaseDatabase _database;
+    DatabaseReference reference;
+
     [SerializeField] private GameObject firstUI;
 
     [SerializeField] private GameObject menu;
@@ -18,9 +25,15 @@ public class MenuManager : MonoBehaviour
 
     int playerCoins;
 
+    User myUser;
+
     // Start is called before the first frame update
     void Start()
     {
+        firebaseAuth = Firebase.Auth.FirebaseAuth.DefaultInstance; ;
+        _database = FirebaseDatabase.GetInstance("https://runjeffrun-3949c-default-rtdb.europe-west1.firebasedatabase.app/");
+        reference = _database.RootReference;
+
         //Debug Only
         //PlayerPrefs.SetInt("CurrCoins", 650);
         playerCoins = PlayerPrefs.GetInt("CurrCoins", 0);
@@ -36,11 +49,18 @@ public class MenuManager : MonoBehaviour
         shop.SetActive(false);
 
         firstUI.SetActive(true);
+
+        getPlayer();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(playerCoins != myUser.player.coins)
+        {
+            myUser.player.coins = playerCoins;
+            updatePlayer();
+        }
         for(int i = 0; i < coinsTexts.Length; i++)
         {
             if(coinsTexts[i]) //Check if it exists
@@ -55,6 +75,40 @@ public class MenuManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void updatePlayer()
+    {
+        string json = JsonUtility.ToJson(myUser);
+        reference.Child("users").Child(myUser.id).SetRawJsonValueAsync(json).ContinueWith(task =>
+        {
+            if (task.IsFaulted) Debug.Log("F in the chat");
+            else if (task.IsCompleted)
+            {
+                Debug.Log("Ye");
+            }
+
+        });
+    }
+
+    void getPlayer()
+    {
+        reference.Child("users").Child(PlayerPrefs.GetString("userId")).GetValueAsync().ContinueWith(_task =>
+        {
+            if (_task.IsFaulted)
+            {
+                // Handle the error...
+                Debug.Log("F in the chat");
+            }
+            else if (_task.IsCompleted)
+            {
+                DataSnapshot snapshot = _task.Result;
+                myUser = new User(snapshot.Child("rol").GetValue(true).ToString(),
+                    snapshot.Child("correo").GetValue(true).ToString(),
+                    snapshot.Child("id").GetValue(true).ToString(),
+                    snapshot.Child("idOpuesto").GetValue(true).ToString());
+            }
+        });
     }
 
     public void GoToMenu()

@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
 
     void backToMenu()
     {
+
         SceneManager.LoadScene(1);
     }
 

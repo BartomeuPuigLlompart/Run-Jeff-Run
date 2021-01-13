@@ -9,24 +9,43 @@ public class User
 { 
     public class Player
     {
-        int coins;
-        bool map1Unlocked;
-        bool map2Unlocked;
-        bool map3Unlocked;
-        bool map4Unlocked;
-        int currentPlayingTime;
-        bool online;
-        bool tasksDone;
-        
-        int availablePlayingTime;
-        int averageDailyPlayingTime;
-        int averageRunPlayingTime;
-        int averagePauseOrMenuPlayingTime;
-        int maxRunPlayingTime;
-        int maxCoinsInSingleRun;
+        public int coins;
+        public bool map1Unlocked;
+        public bool map2Unlocked;
+        public bool map3Unlocked;
+        public bool map4Unlocked;
+        public int currentPlayingTime;
+        public bool online;
+        public bool tasksDone;
 
-        Player()
+        public int availablePlayingTime;
+        public int averageDailyPlayingTime;
+        public int averageRunPlayingTime;
+        public int averagePauseOrMenuPlayingTime;
+        public int maxRunPlayingTime;
+        public int maxCoinsInSingleRun;
+
+        public Player()
         { }
+
+        public void createNewDefaultPlayer()
+        {
+            coins = 0;
+            map1Unlocked = true;
+            map2Unlocked = false;
+            map3Unlocked = false;
+            map4Unlocked = false;
+            currentPlayingTime = 0;
+            online = true;
+            tasksDone = false;
+
+            availablePlayingTime = 0;
+            averageDailyPlayingTime = 0;
+            averageRunPlayingTime = 0;
+            averagePauseOrMenuPlayingTime = 0;
+            maxRunPlayingTime = 0;
+            maxCoinsInSingleRun = 0;
+        }
     }
 
     public string rol;
