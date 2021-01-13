@@ -32,6 +32,32 @@ public class SignInScript : MonoBehaviour
         firebaseAuth = Firebase.Auth.FirebaseAuth.DefaultInstance; ;
         _database = FirebaseDatabase.GetInstance("https://runjeffrun-3949c-default-rtdb.europe-west1.firebasedatabase.app/");
         reference = _database.RootReference;
+        if (SceneManager.GetActiveScene().name == "AuthTest") tutorLogIn();
+        else playerLogIn();
+    }
+
+    bool reLogin()
+    {
+        firebaseAuth.SignInWithEmailAndPasswordAsync(PlayerPrefs.GetString("userEmail"), PlayerPrefs.GetString("userPassword")).ContinueWith(task =>
+        {
+            if (task.IsCanceled)
+            {
+                Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
+                return false;
+            }
+            if (task.IsFaulted)
+            {
+                Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
+                return false;
+            }
+
+            Firebase.Auth.FirebaseUser newUser = task.Result;
+            Debug.LogFormat("User signed in successfully: {0} ({1})",
+                newUser.DisplayName, newUser.UserId);
+
+            return true;
+        });
+        return false;
     }
 
     public void tutorLogIn()
@@ -64,6 +90,13 @@ public class SignInScript : MonoBehaviour
                     {
                         Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: You don't have permission to Log In Here");
                         firebaseAuth.SignOut();
+                    }
+                    else
+                    {
+                        PlayerPrefs.SetString("userId", newUser.UserId);
+                        PlayerPrefs.SetString("userEmail", logInEmail.text);
+                        PlayerPrefs.SetString("userPassword", logInPassword.text);
+                        goToTutorMenu();
                     }
                 }
             });
@@ -103,7 +136,10 @@ public class SignInScript : MonoBehaviour
                     }
                     else
                     {
-                        SceneManager.LoadScene("Menu");
+                        PlayerPrefs.SetString("userId", newUser.UserId);
+                        PlayerPrefs.SetString("userEmail", email.text);
+                        PlayerPrefs.SetString("userPassword", password.text);
+                        goToPlayerMenu();
                     }
                 }
             });
@@ -137,7 +173,6 @@ public class SignInScript : MonoBehaviour
             Firebase.Auth.FirebaseUser newUser = task.Result;
             Debug.LogFormat("Firebase user created successfully: {0} ({1})",
                 newUser.DisplayName, newUser.UserId);
-
             writeNewUser(newUser.UserId, email.text);
         });
     }
@@ -151,12 +186,10 @@ public class SignInScript : MonoBehaviour
             if (task.IsFaulted) Debug.Log("F in the chat");
             else if (task.IsCompleted)
             {
-                PlayerPrefs.SetString("userId", userId);
+                goToInvitePlayer();
             }
             
         });
-
-        goToInvitePlayer();
     }
 
     public void setPlayer()
@@ -272,5 +305,15 @@ public class SignInScript : MonoBehaviour
         signUp.SetActive(false);
         logIn.SetActive(true);
         if (invitePlayer != null) invitePlayer.SetActive(false);
+    }
+
+    void goToPlayerMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
+    void goToTutorMenu()
+    {
+        SceneManager.LoadScene("menuTutor");
     }
 }
