@@ -24,6 +24,15 @@ public class SignInScript : MonoBehaviour
 
     public static User tutor, jugador;
 
+    string userID;
+
+    bool _goToTutorMenu = false;
+
+    bool _goToInvitePlayer = false;
+
+    bool _goToLogIn = false;
+
+    bool _goToPlayerMenu = false;
 
     // Use this for initialization
     void Start()
@@ -32,37 +41,22 @@ public class SignInScript : MonoBehaviour
         firebaseAuth = Firebase.Auth.FirebaseAuth.DefaultInstance; ;
         _database = FirebaseDatabase.GetInstance("https://runjeffrun-3949c-default-rtdb.europe-west1.firebasedatabase.app/");
         reference = _database.RootReference;
-        if (SceneManager.GetActiveScene().name == "AuthTest") tutorLogIn();
-        else playerLogIn();
+        if (SceneManager.GetActiveScene().name == "AuthTest") tutorLogIn(true);
+        else playerLogIn(true);
     }
 
-    bool reLogin()
+    private void Update()
     {
-        firebaseAuth.SignInWithEmailAndPasswordAsync(PlayerPrefs.GetString("userEmail"), PlayerPrefs.GetString("userPassword")).ContinueWith(task =>
-        {
-            if (task.IsCanceled)
-            {
-                Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
-                return false;
-            }
-            if (task.IsFaulted)
-            {
-                Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
-                return false;
-            }
-
-            Firebase.Auth.FirebaseUser newUser = task.Result;
-            Debug.LogFormat("User signed in successfully: {0} ({1})",
-                newUser.DisplayName, newUser.UserId);
-
-            return true;
-        });
-        return false;
+        if (_goToTutorMenu) goToTutorMenu();
+        else if (_goToInvitePlayer) goToInvitePlayer();
+        else if (_goToLogIn) goToLogIn();
+        else if (_goToPlayerMenu) goToPlayerMenu();
     }
 
-    public void tutorLogIn()
+    public void tutorLogIn(bool firstLog = false)
     {
-        firebaseAuth.SignInWithEmailAndPasswordAsync(logInEmail.text, logInPassword.text).ContinueWith(task => {
+        firebaseAuth.SignInWithEmailAndPasswordAsync(!firstLog ? logInEmail.text : PlayerPrefs.GetString("userEmail"), !firstLog ? logInPassword.text : 
+            PlayerPrefs.GetString("userPassword")).ContinueWith(task => {
             if (task.IsCanceled)
             {
                 Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
@@ -93,19 +87,16 @@ public class SignInScript : MonoBehaviour
                     }
                     else
                     {
-                        PlayerPrefs.SetString("userId", newUser.UserId);
-                        PlayerPrefs.SetString("userEmail", logInEmail.text);
-                        PlayerPrefs.SetString("userPassword", logInPassword.text);
-                        goToTutorMenu();
+                        _goToTutorMenu = true; 
                     }
                 }
             });
             
         });
     }
-    public void playerLogIn()
+    public void playerLogIn(bool firstLog = false)
     {
-        firebaseAuth.SignInWithEmailAndPasswordAsync(email.text, password.text).ContinueWith(task => {
+        firebaseAuth.SignInWithEmailAndPasswordAsync(!firstLog ? email.text : PlayerPrefs.GetString("userEmail"), !firstLog ? password.text : PlayerPrefs.GetString("userPassword")).ContinueWith(task => {
             if (task.IsCanceled)
             {
                 Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
@@ -136,10 +127,8 @@ public class SignInScript : MonoBehaviour
                     }
                     else
                     {
-                        PlayerPrefs.SetString("userId", newUser.UserId);
-                        PlayerPrefs.SetString("userEmail", email.text);
-                        PlayerPrefs.SetString("userPassword", password.text);
-                        goToPlayerMenu();
+                        userID = newUser.UserId;
+                        _goToPlayerMenu = true;
                     }
                 }
             });
@@ -173,6 +162,7 @@ public class SignInScript : MonoBehaviour
             Firebase.Auth.FirebaseUser newUser = task.Result;
             Debug.LogFormat("Firebase user created successfully: {0} ({1})",
                 newUser.DisplayName, newUser.UserId);
+            userID = newUser.UserId;
             writeNewUser(newUser.UserId, email.text);
         });
     }
@@ -186,7 +176,7 @@ public class SignInScript : MonoBehaviour
             if (task.IsFaulted) Debug.Log("F in the chat");
             else if (task.IsCompleted)
             {
-                goToInvitePlayer();
+                _goToInvitePlayer = true;
             }
             
         });
@@ -244,7 +234,7 @@ public class SignInScript : MonoBehaviour
             else if (task.IsCompleted)
             {
                 Debug.Log("Ye");
-                goToLogIn();
+                _goToLogIn = true;
             }
 
         });
@@ -262,28 +252,31 @@ public class SignInScript : MonoBehaviour
             else if (_task.IsCompleted)
             {
                 DataSnapshot snapshot = _task.Result;
+                bool found = false;
                 foreach (DataSnapshot s in snapshot.Children)
                 {
                     Debug.Log(s.Child("correo").GetValue(true).ToString());
                     if (s.Child("correo").GetValue(true).ToString() == logInEmail.text &&
                     s.Child("rol").GetValue(true).ToString() == "Player")
                     {
+                        found = true;
                         firebaseAuth.SendPasswordResetEmailAsync(logInEmail.text).ContinueWith((authTask) =>
                         {
                             if (authTask.IsFaulted) Debug.Log("F in the chat");
                             else if (authTask.IsCompleted)
                             {
                                 Debug.Log("Reset email sent successfully!\nPlease follow the instructions sent to you via email!");
-                                goToSignUp();
+
                                 return;
                             }
                         });
                     }
                 }
-                Debug.Log("You are not registered as a player. If you want to play, find a tutor if you don't have one and sign up.");
-                goToSignUp();
+                
+                if(!found) Debug.Log("You are not registered as a player. If you want to play, find a tutor if you don't have one and sign up.");
             }
         });
+        goToSignUp();
     }
 
     public void goToSignUp()
@@ -298,6 +291,7 @@ public class SignInScript : MonoBehaviour
         signUp.SetActive(false);
         logIn.SetActive(false);
         if (invitePlayer != null) invitePlayer.SetActive(true);
+        _goToInvitePlayer = false;
     }
 
     public void goToLogIn()
@@ -305,15 +299,22 @@ public class SignInScript : MonoBehaviour
         signUp.SetActive(false);
         logIn.SetActive(true);
         if (invitePlayer != null) invitePlayer.SetActive(false);
+        _goToLogIn = false;
     }
 
     void goToPlayerMenu()
     {
+        PlayerPrefs.SetString("userId", userID);
+        PlayerPrefs.SetString("userEmail", email.text);
+        PlayerPrefs.SetString("userPassword", password.text);
         SceneManager.LoadScene("Menu");
     }
 
     void goToTutorMenu()
     {
+        PlayerPrefs.SetString("userId", userID);
+        PlayerPrefs.SetString("userEmail", logInEmail.text);
+        PlayerPrefs.SetString("userPassword", logInPassword.text);
         SceneManager.LoadScene("menuTutor");
     }
 }
