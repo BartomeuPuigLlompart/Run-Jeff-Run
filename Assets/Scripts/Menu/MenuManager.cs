@@ -18,19 +18,25 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject menu;
     [SerializeField] private GameObject levels;
     [SerializeField] private GameObject shop;
+    [SerializeField] private GameObject stats;
 
     [SerializeField] GameObject areYouSureObject;
 
     [SerializeField] Text[] coinsTexts;
+    [SerializeField] Text currentPlayingTime, availablePlayingTime, tasksDone, averageRunPlayingTime, maxCoinsInSingleRun, maxRunPlayingTime;
+
+    [SerializeField] InputField setAvailableTimeField;
 
     int playerCoins;
 
     User myUser;
+    static float playingTime;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        firebaseAuth = Firebase.Auth.FirebaseAuth.DefaultInstance; ;
+        firebaseAuth = Firebase.Auth.FirebaseAuth.DefaultInstance;
         _database = FirebaseDatabase.GetInstance("https://runjeffrun-3949c-default-rtdb.europe-west1.firebasedatabase.app/");
         reference = _database.RootReference;
 
@@ -47,6 +53,7 @@ public class MenuManager : MonoBehaviour
         menu.SetActive(false);
         levels.SetActive(false);
         shop.SetActive(false);
+        stats.SetActive(false);
 
         firstUI.SetActive(true);
 
@@ -56,10 +63,13 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerCoins != myUser.player.coins)
+        if (myUser != null)
         {
-            myUser.player.coins = playerCoins;
-            updatePlayer();
+            if (playerCoins != myUser.player.coins)
+            {
+                myUser.player.coins = playerCoins;
+                updatePlayer();
+            }
         }
         for(int i = 0; i < coinsTexts.Length; i++)
         {
@@ -75,7 +85,6 @@ public class MenuManager : MonoBehaviour
                 }
             }
         }
-        Debug.Log(myUser.player.online);
     }
 
     public void updatePlayer()
@@ -136,6 +145,38 @@ public class MenuManager : MonoBehaviour
                 myUser.player.maxCoinsInSingleRun = int.Parse(snapshot.Child("player").Child("maxCoinsInSingleRun").GetValue(true).ToString());
             }
         });
+        StartCoroutine("updateBD");
+    }
+
+    IEnumerator updateBD()
+    {
+        yield return new WaitForSeconds(1);
+        int refresh = 10;
+        int counter = 0;
+        while (SceneManager.GetActiveScene().name == "Menu")
+        {
+            myUser.player.currentPlayingTime++;
+            counter++;
+            if (counter == refresh) { updatePlayer(); counter = 0; }
+            yield return new WaitForSeconds(1);
+        }
+    }
+
+    void watchStats()
+    {
+        currentPlayingTime.text = "Current Playing Time: " + myUser.player.currentPlayingTime / 60 + " minutes";
+        availablePlayingTime.text = "Available Playing Time: " + myUser.player.availablePlayingTime + " minutes";
+        tasksDone.text = myUser.player.tasksDone ? "TASKS DONE" : "TASKS NOT DONE";
+        tasksDone.color = myUser.player.tasksDone ? new Color(0, 1, 0) : new Color(1, 0, 0);
+        averageRunPlayingTime.text = "Average Run Playing Time: " + myUser.player.averageRunPlayingTime + " minutes";
+        maxRunPlayingTime.text = "Max Run Playing Time: " + myUser.player.maxRunPlayingTime + " minutes";
+        maxCoinsInSingleRun.text = "Max Coins In Single Run: " + myUser.player.maxCoinsInSingleRun;
+    }
+
+    public void setAvailableTime()
+    {
+        myUser.player.availablePlayingTime = int.Parse(setAvailableTimeField.text);
+        updatePlayer();
     }
 
     public void GoToMenu()
@@ -145,6 +186,7 @@ public class MenuManager : MonoBehaviour
             menu.SetActive(true);
             levels.SetActive(false);
             shop.SetActive(false);
+            stats.SetActive(false);
         }
     }
 
@@ -153,6 +195,7 @@ public class MenuManager : MonoBehaviour
         levels.SetActive(true);
         menu.SetActive(false);
         shop.SetActive(false);
+        stats.SetActive(false);
     }
 
     public void GoToShop()
@@ -160,10 +203,21 @@ public class MenuManager : MonoBehaviour
         shop.SetActive(true);
         menu.SetActive(false);
         levels.SetActive(false);
+        stats.SetActive(false);
+    }
+
+    public void GoToStats()
+    {
+        shop.SetActive(false);
+        menu.SetActive(false);
+        levels.SetActive(false);
+        stats.SetActive(true);
+        watchStats();
     }
 
     public void GoToLevel1() //For Presentation only
     {
+        updatePlayer();
         SceneManager.LoadScene(2); //Menu scene
     }
 }

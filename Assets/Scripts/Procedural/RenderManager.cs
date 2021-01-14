@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class RenderManager : MonoBehaviour
 {
     const float groundfOffset = 21.6f;
@@ -20,7 +21,7 @@ public class RenderManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (PlayerController.myUser != null) isWorking = PlayerController.myUser.player.tasksDone;
     }
 
     private void OnTriggerExit2D(Collider2D collision)

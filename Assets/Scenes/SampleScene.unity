@@ -1767,8 +1767,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 72823913}
-        m_MethodName: QuitGame
+      - m_Target: {fileID: 3256285066665682738}
+        m_MethodName: backToMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3264,6 +3264,18 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 61f66f8285678284c840fda233f9fa17, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6009f9b3665807a46b2d4b98c18c410c, type: 3}
+--- !u!114 &3256285066665682738 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3256285065413852066, guid: 6009f9b3665807a46b2d4b98c18c410c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3256285066665682737}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312949784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4075aa347756fd4681733c4f98cce5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3954654339021316181
 PrefabInstance:
   m_ObjectHideFlags: 0
