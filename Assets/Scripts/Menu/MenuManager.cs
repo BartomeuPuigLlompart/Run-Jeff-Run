@@ -75,12 +75,23 @@ public class MenuManager : MonoBehaviour
                 }
             }
         }
+        Debug.Log(myUser.player.online);
     }
 
     public void updatePlayer()
     {
         string json = JsonUtility.ToJson(myUser);
         reference.Child("users").Child(myUser.id).SetRawJsonValueAsync(json).ContinueWith(task =>
+        {
+            if (task.IsFaulted) Debug.Log("F in the chat");
+            else if (task.IsCompleted)
+            {
+                Debug.Log("Ye");
+            }
+
+        });
+        json = JsonUtility.ToJson(myUser.player);
+        reference.Child("users").Child(myUser.id).Child("player").SetRawJsonValueAsync(json).ContinueWith(task =>
         {
             if (task.IsFaulted) Debug.Log("F in the chat");
             else if (task.IsCompleted)
@@ -107,6 +118,22 @@ public class MenuManager : MonoBehaviour
                     snapshot.Child("correo").GetValue(true).ToString(),
                     snapshot.Child("id").GetValue(true).ToString(),
                     snapshot.Child("idOpuesto").GetValue(true).ToString());
+                myUser.player = new User.Player();
+                myUser.player.coins = int.Parse(snapshot.Child("player").Child("coins").GetValue(true).ToString());
+                myUser.player.map1Unlocked = bool.Parse(snapshot.Child("player").Child("map1Unlocked").GetValue(true).ToString());
+                myUser.player.map2Unlocked = bool.Parse(snapshot.Child("player").Child("map2Unlocked").GetValue(true).ToString());
+                myUser.player.map3Unlocked = bool.Parse(snapshot.Child("player").Child("map3Unlocked").GetValue(true).ToString());
+                myUser.player.map4Unlocked = bool.Parse(snapshot.Child("player").Child("map4Unlocked").GetValue(true).ToString());
+                myUser.player.currentPlayingTime = int.Parse(snapshot.Child("player").Child("currentPlayingTime").GetValue(true).ToString());
+                myUser.player.online = bool.Parse(snapshot.Child("player").Child("online").GetValue(true).ToString());
+                myUser.player.tasksDone = bool.Parse(snapshot.Child("player").Child("tasksDone").GetValue(true).ToString());
+
+                myUser.player.availablePlayingTime = int.Parse(snapshot.Child("player").Child("availablePlayingTime").GetValue(true).ToString());
+                myUser.player.averageDailyPlayingTime = int.Parse(snapshot.Child("player").Child("averageDailyPlayingTime").GetValue(true).ToString());
+                myUser.player.averageRunPlayingTime = int.Parse(snapshot.Child("player").Child("averageRunPlayingTime").GetValue(true).ToString());
+                myUser.player.averagePauseOrMenuPlayingTime = int.Parse(snapshot.Child("player").Child("averagePauseOrMenuPlayingTime").GetValue(true).ToString());
+                myUser.player.maxRunPlayingTime = int.Parse(snapshot.Child("player").Child("maxRunPlayingTime").GetValue(true).ToString());
+                myUser.player.maxCoinsInSingleRun = int.Parse(snapshot.Child("player").Child("maxCoinsInSingleRun").GetValue(true).ToString());
             }
         });
     }
