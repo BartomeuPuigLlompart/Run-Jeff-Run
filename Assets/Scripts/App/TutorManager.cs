@@ -136,6 +136,15 @@ public class TutorManager : MonoBehaviour
         getPlayer();
     }
 
+    public void logOut()
+    {
+        firebaseAuth.SignOut();
+        PlayerPrefs.DeleteKey("userId");
+        PlayerPrefs.DeleteKey("userEmail");
+        PlayerPrefs.DeleteKey("userPassword");
+        SceneManager.LoadScene("AuthTest");
+    }
+
     public void updatePlayer()
     {
         string json = JsonUtility.ToJson(player);

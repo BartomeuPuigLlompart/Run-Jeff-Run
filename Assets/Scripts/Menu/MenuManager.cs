@@ -226,4 +226,13 @@ public class MenuManager : MonoBehaviour
         updatePlayer();
         SceneManager.LoadScene(2); //Menu scene
     }
+
+    public void logOut()
+    {
+        firebaseAuth.SignOut();
+        PlayerPrefs.DeleteKey("userId");
+        PlayerPrefs.DeleteKey("userEmail");
+        PlayerPrefs.DeleteKey("userPassword");
+        SceneManager.LoadScene("GameAuthTest");
+    }
 }
