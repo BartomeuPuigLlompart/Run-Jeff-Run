@@ -18,6 +18,8 @@ public class User
         public bool online;
         public bool tasksDone;
 
+        public int numOfRuns;
+        public int numOfDays;
         public int availablePlayingTime;
         public int averageDailyPlayingTime;
         public int averageRunPlayingTime;
@@ -39,6 +41,8 @@ public class User
             online = true;
             tasksDone = false;
 
+            numOfRuns = 0;
+            numOfDays = 0;
             availablePlayingTime = 0;
             averageDailyPlayingTime = 0;
             averageRunPlayingTime = 0;

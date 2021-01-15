@@ -30,7 +30,7 @@ public class MenuManager : MonoBehaviour
     int playerCoins;
 
     User myUser;
-    static float playingTime;
+    float menuTime;
     
 
     // Start is called before the first frame update
@@ -85,10 +85,14 @@ public class MenuManager : MonoBehaviour
                 }
             }
         }
+        menuTime += Time.unscaledDeltaTime;
     }
 
     public void updatePlayer()
     {
+        if (PlayerPrefs.HasKey("pauseTime")) PlayerPrefs.SetFloat("pauseTime", menuTime + PlayerPrefs.GetFloat("pauseTime"));
+        else PlayerPrefs.SetFloat("pauseTime", menuTime);
+        menuTime = 0;
         string json = JsonUtility.ToJson(myUser);
         reference.Child("users").Child(myUser.id).SetRawJsonValueAsync(json).ContinueWith(task =>
         {
@@ -137,6 +141,8 @@ public class MenuManager : MonoBehaviour
                 myUser.player.online = bool.Parse(snapshot.Child("player").Child("online").GetValue(true).ToString());
                 myUser.player.tasksDone = bool.Parse(snapshot.Child("player").Child("tasksDone").GetValue(true).ToString());
 
+                myUser.player.numOfRuns = int.Parse(snapshot.Child("player").Child("numOfRuns").GetValue(true).ToString());
+                myUser.player.numOfDays = int.Parse(snapshot.Child("player").Child("numOfDays").GetValue(true).ToString());
                 myUser.player.availablePlayingTime = int.Parse(snapshot.Child("player").Child("availablePlayingTime").GetValue(true).ToString());
                 myUser.player.averageDailyPlayingTime = int.Parse(snapshot.Child("player").Child("averageDailyPlayingTime").GetValue(true).ToString());
                 myUser.player.averageRunPlayingTime = int.Parse(snapshot.Child("player").Child("averageRunPlayingTime").GetValue(true).ToString());
@@ -164,13 +170,13 @@ public class MenuManager : MonoBehaviour
 
     void watchStats()
     {
-        currentPlayingTime.text = "Current Playing Time: " + myUser.player.currentPlayingTime / 60 + " minutes";
+        currentPlayingTime.text = "Current Playing Time: " + (myUser.player.currentPlayingTime / 60).ToString() + " minutes";
         availablePlayingTime.text = "Available Playing Time: " + myUser.player.availablePlayingTime + " minutes";
         tasksDone.text = myUser.player.tasksDone ? "TASKS DONE" : "TASKS NOT DONE";
         tasksDone.color = myUser.player.tasksDone ? new Color(0, 1, 0) : new Color(1, 0, 0);
-        averageRunPlayingTime.text = "Average Run Playing Time: " + myUser.player.averageRunPlayingTime + " minutes";
-        maxRunPlayingTime.text = "Max Run Playing Time: " + myUser.player.maxRunPlayingTime + " minutes";
-        maxCoinsInSingleRun.text = "Max Coins In Single Run: " + myUser.player.maxCoinsInSingleRun;
+        averageRunPlayingTime.text = "Average Run Playing Time: " + myUser.player.averageRunPlayingTime + " seconds";
+        maxRunPlayingTime.text = "Max Run Playing Time: " + myUser.player.maxRunPlayingTime + " seconds";
+        maxCoinsInSingleRun.text = "Max Coins In Single Run: " + myUser.player.maxCoinsInSingleRun + " coins";
     }
 
     public void setAvailableTime()

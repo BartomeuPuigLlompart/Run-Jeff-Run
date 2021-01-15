@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     public  int finalFrames = 50;
     public static PlayerController playerController;
     private int coins;
+    float runStartRef;
+    float pauseTime = 0;
 
     private void Awake()
     {
@@ -44,7 +46,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        runStartRef = Time.time;
         trail = new List<Vector2>();
     }
 
@@ -71,8 +73,9 @@ public class PlayerController : MonoBehaviour
         {
             savedSpeed= speed;
             speed = 0;
+            pauseTime += Time.unscaledDeltaTime;
         }
-      
+        
     }
 
     public void hurtplayer()
@@ -88,8 +91,8 @@ public class PlayerController : MonoBehaviour
 
     public void backToMenu()
     {
-        updatePlayer();
         setRunStats();
+        updatePlayer();
         SceneManager.LoadScene(1);
     }
 
@@ -130,6 +133,8 @@ public class PlayerController : MonoBehaviour
                 myUser.player.online = bool.Parse(snapshot.Child("player").Child("online").GetValue(true).ToString());
                 myUser.player.tasksDone = bool.Parse(snapshot.Child("player").Child("tasksDone").GetValue(true).ToString());
 
+                myUser.player.numOfRuns = int.Parse(snapshot.Child("player").Child("numOfRuns").GetValue(true).ToString());
+                myUser.player.numOfDays = int.Parse(snapshot.Child("player").Child("numOfDays").GetValue(true).ToString());
                 myUser.player.availablePlayingTime = int.Parse(snapshot.Child("player").Child("availablePlayingTime").GetValue(true).ToString());
                 myUser.player.averageDailyPlayingTime = int.Parse(snapshot.Child("player").Child("averageDailyPlayingTime").GetValue(true).ToString());
                 myUser.player.averageRunPlayingTime = int.Parse(snapshot.Child("player").Child("averageRunPlayingTime").GetValue(true).ToString());
@@ -157,7 +162,13 @@ public class PlayerController : MonoBehaviour
 
     void setRunStats()
     {
-        ;//Max coins, max time...
+        myUser.player.currentPlayingTime += (int)pauseTime;
+        PlayerPrefs.SetFloat("pauseTime", pauseTime + PlayerPrefs.GetFloat("pauseTime"));
+        myUser.player.numOfRuns++;
+        
+        myUser.player.averageRunPlayingTime = (myUser.player.averageRunPlayingTime * (myUser.player.numOfRuns - 1) + (int)(Time.time - runStartRef)) / myUser.player.numOfRuns;
+        if (myUser.player.maxRunPlayingTime < (int)(Time.time - runStartRef)) myUser.player.maxRunPlayingTime = (int)(Time.time - runStartRef);
+        if (myUser.player.maxCoinsInSingleRun < coins) myUser.player.maxCoinsInSingleRun = coins;
     }
 
     public void updatePlayer()

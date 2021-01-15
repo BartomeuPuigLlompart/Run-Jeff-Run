@@ -87,6 +87,7 @@ public class SignInScript : MonoBehaviour
                     }
                     else
                     {
+                        userID = newUser.UserId;
                         _goToTutorMenu = true; 
                     }
                 }
