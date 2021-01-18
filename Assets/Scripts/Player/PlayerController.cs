@@ -130,8 +130,8 @@ public class PlayerController : MonoBehaviour
                 myUser.player.map3Unlocked = bool.Parse(snapshot.Child("player").Child("map3Unlocked").GetValue(true).ToString());
                 myUser.player.map4Unlocked = bool.Parse(snapshot.Child("player").Child("map4Unlocked").GetValue(true).ToString());
                 myUser.player.currentPlayingTime = int.Parse(snapshot.Child("player").Child("currentPlayingTime").GetValue(true).ToString());
-                myUser.player.online = bool.Parse(snapshot.Child("player").Child("online").GetValue(true).ToString());
-                myUser.player.tasksDone = bool.Parse(snapshot.Child("player").Child("tasksDone").GetValue(true).ToString());
+                myUser.player.lastLog = snapshot.Child("player").Child("lastLog").GetValue(true).ToString();
+                myUser.player.tasksDone = snapshot.Child("player").Child("tasksDone").GetValue(true).ToString();
 
                 myUser.player.numOfRuns = int.Parse(snapshot.Child("player").Child("numOfRuns").GetValue(true).ToString());
                 myUser.player.numOfDays = int.Parse(snapshot.Child("player").Child("numOfDays").GetValue(true).ToString());

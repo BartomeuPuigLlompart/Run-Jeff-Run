@@ -26,6 +26,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] Text currentPlayingTime, availablePlayingTime, tasksDone, averageRunPlayingTime, maxCoinsInSingleRun, maxRunPlayingTime;
 
     [SerializeField] InputField setAvailableTimeField;
+    [SerializeField] Button setTimeBtn;
 
     int playerCoins;
 
@@ -65,7 +66,9 @@ public class MenuManager : MonoBehaviour
     {
         if (myUser != null)
         {
-            if (playerCoins != myUser.player.coins)
+            if (myUser.player.lastLog != System.DateTime.Today.ToString()) GoToStats();
+
+            else if (playerCoins != myUser.player.coins)
             {
                 myUser.player.coins = playerCoins;
                 updatePlayer();
@@ -87,7 +90,7 @@ public class MenuManager : MonoBehaviour
         }
         menuTime += Time.unscaledDeltaTime;
     }
-
+    
     public void updatePlayer()
     {
         if (PlayerPrefs.HasKey("pauseTime")) PlayerPrefs.SetFloat("pauseTime", menuTime + PlayerPrefs.GetFloat("pauseTime"));
@@ -138,8 +141,8 @@ public class MenuManager : MonoBehaviour
                 myUser.player.map3Unlocked = bool.Parse(snapshot.Child("player").Child("map3Unlocked").GetValue(true).ToString());
                 myUser.player.map4Unlocked = bool.Parse(snapshot.Child("player").Child("map4Unlocked").GetValue(true).ToString());
                 myUser.player.currentPlayingTime = int.Parse(snapshot.Child("player").Child("currentPlayingTime").GetValue(true).ToString());
-                myUser.player.online = bool.Parse(snapshot.Child("player").Child("online").GetValue(true).ToString());
-                myUser.player.tasksDone = bool.Parse(snapshot.Child("player").Child("tasksDone").GetValue(true).ToString());
+                myUser.player.lastLog = snapshot.Child("player").Child("lastLog").GetValue(true).ToString();
+                myUser.player.tasksDone = snapshot.Child("player").Child("tasksDone").GetValue(true).ToString();
 
                 myUser.player.numOfRuns = int.Parse(snapshot.Child("player").Child("numOfRuns").GetValue(true).ToString());
                 myUser.player.numOfDays = int.Parse(snapshot.Child("player").Child("numOfDays").GetValue(true).ToString());
@@ -172,11 +175,14 @@ public class MenuManager : MonoBehaviour
     {
         currentPlayingTime.text = "Current Playing Time: " + (myUser.player.currentPlayingTime / 60).ToString() + " minutes";
         availablePlayingTime.text = "Available Playing Time: " + myUser.player.availablePlayingTime + " minutes";
-        tasksDone.text = myUser.player.tasksDone ? "TASKS DONE" : "TASKS NOT DONE";
-        tasksDone.color = myUser.player.tasksDone ? new Color(0, 1, 0) : new Color(1, 0, 0);
+        tasksDone.text = myUser.player.tasksDone == System.DateTime.Today.ToString() ? "TASKS DONE" : "TASKS NOT DONE";
+        tasksDone.color = myUser.player.tasksDone == System.DateTime.Today.ToString() ? new Color(0, 1, 0) : new Color(1, 0, 0);
         averageRunPlayingTime.text = "Average Run Playing Time: " + myUser.player.averageRunPlayingTime + " seconds";
         maxRunPlayingTime.text = "Max Run Playing Time: " + myUser.player.maxRunPlayingTime + " seconds";
         maxCoinsInSingleRun.text = "Max Coins In Single Run: " + myUser.player.maxCoinsInSingleRun + " coins";
+        setTimeBtn.gameObject.SetActive(myUser.player.lastLog != System.DateTime.Today.ToString());
+        setAvailableTimeField.gameObject.SetActive(myUser.player.lastLog != System.DateTime.Today.ToString());
+        
     }
 
     public void setAvailableTime()
@@ -225,6 +231,25 @@ public class MenuManager : MonoBehaviour
     {
         updatePlayer();
         SceneManager.LoadScene(2); //Menu scene
+    }
+
+    public void dailyReset()
+    {
+        if (myUser.player.lastLog == System.DateTime.Today.ToString()) return;
+
+        if (myUser.player.lastLog != "NONE")
+        {
+            myUser.player.numOfDays++;
+            myUser.player.averageDailyPlayingTime = (myUser.player.averageDailyPlayingTime * (myUser.player.numOfDays - 1) + myUser.player.currentPlayingTime / 60) / myUser.player.numOfDays;
+            myUser.player.averagePauseOrMenuPlayingTime = (myUser.player.averagePauseOrMenuPlayingTime * (myUser.player.numOfDays - 1) + (int)PlayerPrefs.GetFloat("pauseTime") / 60) / myUser.player.numOfDays;
+        }
+        myUser.player.lastLog = System.DateTime.Today.ToString();
+        myUser.player.currentPlayingTime = 0;
+        PlayerPrefs.SetFloat("pauseTime", 0);
+
+        GoToMenu();
+        updatePlayer();
+        getPlayer();
     }
 
     public void logOut()

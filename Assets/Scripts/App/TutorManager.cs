@@ -92,8 +92,8 @@ public class TutorManager : MonoBehaviour
                 player.map3Unlocked = bool.Parse(snapshot.Child("player").Child("map3Unlocked").GetValue(true).ToString());
                 player.map4Unlocked = bool.Parse(snapshot.Child("player").Child("map4Unlocked").GetValue(true).ToString());
                 player.currentPlayingTime = int.Parse(snapshot.Child("player").Child("currentPlayingTime").GetValue(true).ToString());
-                player.online = bool.Parse(snapshot.Child("player").Child("online").GetValue(true).ToString());
-                player.tasksDone = bool.Parse(snapshot.Child("player").Child("tasksDone").GetValue(true).ToString());
+                player.lastLog = snapshot.Child("player").Child("lastLog").GetValue(true).ToString();
+                player.tasksDone = snapshot.Child("player").Child("tasksDone").GetValue(true).ToString();
 
                 player.numOfRuns = int.Parse(snapshot.Child("player").Child("numOfRuns").GetValue(true).ToString());
                 player.numOfDays = int.Parse(snapshot.Child("player").Child("numOfDays").GetValue(true).ToString());
@@ -112,12 +112,11 @@ public class TutorManager : MonoBehaviour
     void watchStats()
     {
         playerName.text = "Player: " + username;
-        state.text = "State: " + (player.online ? "Online" : "Offline");
-        state.color = player.online ? new Color(0, 1, 0) : new Color(1, 0, 0);
+        state.text = "Last Log: " + player.lastLog;
         currentPlayingTime.text = "Current Playing Time: " + (player.currentPlayingTime / 60).ToString() + " minutes";
         availablePlayingTime.text = "Available Playing Time: " + player.availablePlayingTime + " minutes";
         averageDailyPlayingTime.text = "Average Daily Playing Time: " + player.averageDailyPlayingTime + " minutes";
-        if(player.tasksDone)
+        if(player.tasksDone == System.DateTime.Today.ToString())
         {
             tasksDone.text = "TASKS DONE";
             tasksDone.transform.parent.GetComponent<Button>().enabled = false;
@@ -131,7 +130,7 @@ public class TutorManager : MonoBehaviour
 
     public void setTasksDone()
     {
-        player.tasksDone = true;
+        player.tasksDone = System.DateTime.Today.ToString();
         updatePlayer();
         getPlayer();
     }

@@ -15,8 +15,8 @@ public class User
         public bool map3Unlocked;
         public bool map4Unlocked;
         public int currentPlayingTime;
-        public bool online;
-        public bool tasksDone;
+        public string lastLog;
+        public string tasksDone;
 
         public int numOfRuns;
         public int numOfDays;
@@ -38,8 +38,8 @@ public class User
             map3Unlocked = false;
             map4Unlocked = false;
             currentPlayingTime = 0;
-            online = true;
-            tasksDone = false;
+            lastLog = "NONE";
+            tasksDone = "NONE";
 
             numOfRuns = 0;
             numOfDays = 0;

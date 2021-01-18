@@ -8319,12 +8319,12 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1586592980}
-          m_MethodName: 
+        - m_Target: {fileID: 1586592981}
+          m_MethodName: dailyReset
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -12295,6 +12295,7 @@ MonoBehaviour:
   maxCoinsInSingleRun: {fileID: 134219575}
   maxRunPlayingTime: {fileID: 271420202}
   setAvailableTimeField: {fileID: 855236886}
+  setTimeBtn: {fileID: 1178453579}
 --- !u!4 &1586592982
 Transform:
   m_ObjectHideFlags: 0

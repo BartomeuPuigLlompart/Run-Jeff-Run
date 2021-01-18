@@ -21,7 +21,7 @@ public class RenderManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerController.myUser != null) isWorking = PlayerController.myUser.player.tasksDone;
+        if (PlayerController.myUser != null) isWorking = PlayerController.myUser.player.tasksDone == System.DateTime.Today.ToString();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
