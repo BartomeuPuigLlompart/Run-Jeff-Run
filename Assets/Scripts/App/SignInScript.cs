@@ -37,7 +37,7 @@ public class SignInScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        email.horizontalOverflow = HorizontalWrapMode.Wrap;
+        logInEmail.horizontalOverflow = playerEmail.horizontalOverflow = email.horizontalOverflow = HorizontalWrapMode.Wrap;
         firebaseAuth = Firebase.Auth.FirebaseAuth.DefaultInstance; ;
         _database = FirebaseDatabase.GetInstance("https://runjeffrun-3949c-default-rtdb.europe-west1.firebasedatabase.app/");
         reference = _database.RootReference;
