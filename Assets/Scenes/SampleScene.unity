@@ -2115,7 +2115,7 @@ PrefabInstance:
     - target: {fileID: 528249053905863788, guid: 6009f9b3665807a46b2d4b98c18c410c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 528249053905863790, guid: 6009f9b3665807a46b2d4b98c18c410c,
         type: 3}
@@ -3180,13 +3180,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c32c133e89f69dc499a73169078ecf3e, type: 3}
-  m_Color: {r: 0.38679248, g: 0.11859204, b: 0.16009934, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 8f6521b4f34fc714eb2f8f27977e0f88, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
-  m_Size: {x: 4, y: 4.5471287}
-  m_AdaptiveModeThreshold: 0.5
+  m_DrawMode: 1
+  m_Size: {x: 4.01, y: 4.37}
+  m_AdaptiveModeThreshold: 0.47
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
@@ -3208,10 +3208,10 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.02, y: 2.5}
-    newSize: {x: 4, y: 4.5471287}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 2
+    oldSize: {x: 14.36, y: 2.38}
+    newSize: {x: 4.01, y: 4.37}
+    adaptiveTilingThreshold: 0.47
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
@@ -3226,7 +3226,7 @@ Transform:
   m_GameObject: {fileID: 1364482605}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -4.708, z: 0}
-  m_LocalScale: {x: 5.4000006, y: 0.25, z: 1}
+  m_LocalScale: {x: 5.400001, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -3289,13 +3289,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c32c133e89f69dc499a73169078ecf3e, type: 3}
-  m_Color: {r: 0.3882353, g: 0.12156863, b: 0.16078432, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 8f6521b4f34fc714eb2f8f27977e0f88, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
-  m_Size: {x: 4, y: 4.5471287}
-  m_AdaptiveModeThreshold: 0.5
+  m_DrawMode: 1
+  m_Size: {x: 4.01, y: 4.37}
+  m_AdaptiveModeThreshold: 0.47
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
@@ -3317,10 +3317,10 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.02, y: 2.5}
-    newSize: {x: 4, y: 4.5471287}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 2
+    oldSize: {x: 14.36, y: 2.38}
+    newSize: {x: 4.01, y: 4.37}
+    adaptiveTilingThreshold: 0.47
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
@@ -4359,7 +4359,7 @@ PrefabInstance:
     - target: {fileID: 528249053905863788, guid: 6009f9b3665807a46b2d4b98c18c410c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 528249053905863790, guid: 6009f9b3665807a46b2d4b98c18c410c,
         type: 3}
