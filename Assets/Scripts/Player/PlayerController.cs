@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private int coins;
     float runStartRef;
     float pauseTime = 0;
+    int coinsRef = 0;
 
     private void Awake()
     {
@@ -46,13 +47,18 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        runStartRef = Time.time;
+        inmunityRef = runStartRef = Time.time;
         trail = new List<Vector2>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (coins > (coinsRef + 30) && state == states.HURT)
+        {
+            state++;
+        }
+
         switch (state)
         {
             case states.NORMAL:
@@ -81,11 +87,12 @@ public class PlayerController : MonoBehaviour
     public void hurtplayer()
     {
         transform.position += Vector3.up;
-        if (inmunityRef + 3.0f < Time.time)
+        if (inmunityRef + 1.5f < Time.time)
         {
             inmunityRef = Time.time;
             state--;
             if (state == 0) Invoke("backToMenu", 3.0f);
+            else coinsRef = coins;
         }
     }
 

@@ -22,7 +22,7 @@ public class RenderManager : MonoBehaviour
     void Update()
     {
         if (PlayerController.myUser != null) isWorking = (PlayerController.myUser.player.tasksDone == System.DateTime.Today.ToString() &&
-                PlayerController.myUser.player.currentPlayingTime < PlayerController.myUser.player.availablePlayingTime);
+                (PlayerController.myUser.player.currentPlayingTime / 60) < PlayerController.myUser.player.availablePlayingTime);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -64,7 +64,7 @@ public class RenderManager : MonoBehaviour
                     j += i != 0 ? 2 : 3;
                     counter++;
                 }
-                else if(Random.Range(0, (nonHalfDiffTime() ? (checkChain(platforms, i, j) ? 2 : (isWorking ? 4 : 15)) : 
+                else if(Random.Range(0, (nonHalfDiffTime() ? (checkChain(platforms, i, j) ? 2 : (isWorking ? 4 : 30)) : 
                     (checkChain(platforms, i, j) ? 2 : (isWorking ? 4 : 8)))) == 1)
                 {
                     platforms[i][j] = Instantiate(coinPrefab, new Vector3(groundObject.position.x, groundObject.transform.position.y + j + 1, groundObject.position.z), groundObject.GetChild(0).rotation, groundObject);
