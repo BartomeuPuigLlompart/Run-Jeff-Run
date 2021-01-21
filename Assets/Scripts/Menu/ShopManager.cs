@@ -25,6 +25,8 @@ public class ShopManager : MonoBehaviour
 
     [SerializeField] private GameObject areYouSureObject;
 
+    GameObject tapAudioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,8 @@ public class ShopManager : MonoBehaviour
 
         firstUI.SetActive(true);
         firstUIPanel.SetActive(true);
+
+        tapAudioSource = GameObject.FindGameObjectWithTag("SoundManager");
     }
 
     // Update is called once per frame
@@ -50,6 +54,8 @@ public class ShopManager : MonoBehaviour
     {
         if(!areYouSureObject.active)
         {
+            if (tapAudioSource) tapAudioSource.GetComponent<SoundManager>().PlayTapSound();
+
             //Shop Contents
             character.SetActive(true);
             house.SetActive(false);
@@ -71,6 +77,8 @@ public class ShopManager : MonoBehaviour
     {
         if (!areYouSureObject.active)
         {
+            if (tapAudioSource) tapAudioSource.GetComponent<SoundManager>().PlayTapSound();
+
             //Shop Contents
             house.SetActive(true);
             character.SetActive(false);
@@ -92,6 +100,8 @@ public class ShopManager : MonoBehaviour
     {
         if (!areYouSureObject.active)
         {
+            if (tapAudioSource) tapAudioSource.GetComponent<SoundManager>().PlayTapSound();
+
             //Shop Contents
             enemy.SetActive(true);
             character.SetActive(false);

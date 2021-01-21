@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -10,9 +11,15 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public Camera camara;
 
+    bool soundOn = true;
+
+    [SerializeField] AudioSource musicSource;
+
     // Update is called once per frame
     void Update()
     {
+        soundOn = (PlayerPrefs.GetFloat("SoundVolume", 0.5f) > 0.0f);
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameIsPaused)
@@ -54,6 +61,13 @@ public class PauseMenu : MonoBehaviour
     }
     
 
-   
+    public void SetVolume()
+    {
+        soundOn = !soundOn;
+
+        PlayerPrefs.SetFloat("SoundVolume", (soundOn) ? 0.5f : 0f);
+
+        if(musicSource) musicSource.volume = PlayerPrefs.GetFloat("SoundVolume", 0.5f) * 0.25f;
+    }
       
 }

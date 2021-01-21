@@ -32,7 +32,8 @@ public class MenuManager : MonoBehaviour
 
     User myUser;
     float menuTime;
-    
+
+    GameObject tapAudioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +60,8 @@ public class MenuManager : MonoBehaviour
         firstUI.SetActive(true);
 
         getPlayer();
+
+        tapAudioSource = GameObject.FindGameObjectWithTag("SoundManager");
     }
 
     // Update is called once per frame
@@ -195,6 +198,8 @@ public class MenuManager : MonoBehaviour
     {
         if(!areYouSureObject.active)
         {
+            if (tapAudioSource) tapAudioSource.GetComponent<SoundManager>().PlayTapSound();
+
             menu.SetActive(true);
             levels.SetActive(false);
             shop.SetActive(false);
@@ -204,6 +209,8 @@ public class MenuManager : MonoBehaviour
 
     public void GoToLevels()
     {
+        if (tapAudioSource) tapAudioSource.GetComponent<SoundManager>().PlayTapSound();
+
         levels.SetActive(true);
         menu.SetActive(false);
         shop.SetActive(false);
@@ -212,6 +219,8 @@ public class MenuManager : MonoBehaviour
 
     public void GoToShop()
     {
+        if (tapAudioSource) tapAudioSource.GetComponent<SoundManager>().PlayTapSound();
+
         shop.SetActive(true);
         menu.SetActive(false);
         levels.SetActive(false);
@@ -220,6 +229,8 @@ public class MenuManager : MonoBehaviour
 
     public void GoToStats()
     {
+        if (tapAudioSource) tapAudioSource.GetComponent<SoundManager>().PlayTapSound();
+
         shop.SetActive(false);
         menu.SetActive(false);
         levels.SetActive(false);
@@ -229,6 +240,8 @@ public class MenuManager : MonoBehaviour
 
     public void GoToLevel1() //For Presentation only
     {
+        if (tapAudioSource) tapAudioSource.GetComponent<SoundManager>().PlayTapSound();
+
         updatePlayer();
         SceneManager.LoadScene(2); //Menu scene
     }
@@ -254,6 +267,8 @@ public class MenuManager : MonoBehaviour
 
     public void logOut()
     {
+        if (tapAudioSource) tapAudioSource.GetComponent<SoundManager>().PlayTapSound();
+
         firebaseAuth.SignOut();
         PlayerPrefs.DeleteKey("userId");
         PlayerPrefs.DeleteKey("userEmail");
