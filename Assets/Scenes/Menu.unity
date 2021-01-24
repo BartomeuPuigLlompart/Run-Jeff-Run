@@ -497,6 +497,7 @@ MonoBehaviour:
   objectPrice: 1000
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -870,6 +871,7 @@ MonoBehaviour:
   objectPrice: 800
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2991,6 +2993,7 @@ MonoBehaviour:
   objectPrice: 300
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -3134,6 +3137,7 @@ MonoBehaviour:
   objectPrice: 900
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -3963,6 +3967,7 @@ MonoBehaviour:
   objectPrice: 600
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -4262,6 +4267,7 @@ MonoBehaviour:
   objectPrice: 800
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -4680,6 +4686,7 @@ MonoBehaviour:
   objectPrice: 500
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -5394,6 +5401,7 @@ MonoBehaviour:
   objectPrice: 250
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -5554,7 +5562,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1000, y: -325}
+  m_AnchoredPosition: {x: -1000, y: -262}
   m_SizeDelta: {x: 261.7765, y: 266.90936}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &636137600
@@ -5849,6 +5857,7 @@ MonoBehaviour:
   objectPrice: 400
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -6296,6 +6305,7 @@ MonoBehaviour:
   objectPrice: 500
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -7059,6 +7069,7 @@ MonoBehaviour:
   objectPrice: 900
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -7240,6 +7251,7 @@ MonoBehaviour:
   objectPrice: 700
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -8011,6 +8023,7 @@ MonoBehaviour:
   objectPrice: 0
   active: 1
   unlocked: 1
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -9612,6 +9625,7 @@ MonoBehaviour:
   objectPrice: 1000
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -10482,6 +10496,7 @@ MonoBehaviour:
   objectPrice: 0
   active: 1
   unlocked: 1
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -10750,6 +10765,7 @@ MonoBehaviour:
   objectPrice: 250
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -10893,6 +10909,7 @@ MonoBehaviour:
   objectPrice: 700
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -11036,6 +11053,7 @@ MonoBehaviour:
   objectPrice: 600
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -11327,6 +11345,7 @@ MonoBehaviour:
   objectPrice: 1000
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -11470,6 +11489,7 @@ MonoBehaviour:
   objectPrice: 300
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -11613,6 +11633,7 @@ MonoBehaviour:
   objectPrice: 600
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -12105,6 +12126,7 @@ MonoBehaviour:
   objectPrice: 700
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -13022,6 +13044,7 @@ MonoBehaviour:
   objectPrice: 300
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -13999,6 +14022,7 @@ MonoBehaviour:
   objectPrice: 400
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -14142,6 +14166,7 @@ MonoBehaviour:
   objectPrice: 500
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -14285,6 +14310,7 @@ MonoBehaviour:
   objectPrice: 250
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -14490,6 +14516,7 @@ MonoBehaviour:
   objectPrice: 0
   active: 1
   unlocked: 1
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -14977,6 +15004,7 @@ MonoBehaviour:
   objectPrice: 800
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -15194,6 +15222,7 @@ MonoBehaviour:
   objectPrice: 900
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}
@@ -15846,6 +15875,7 @@ MonoBehaviour:
   objectPrice: 400
   active: 0
   unlocked: 0
+  playerNumber: 0
   activeColor: {r: 0.7058824, g: 0.09803922, b: 1, a: 1}
   inactiveColor: {r: 0.3254902, g: 0.050980393, b: 0.45490196, a: 1}
   imageActiveColor: {r: 1, g: 1, b: 1, a: 1}

@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float savedSpeed;
     const float deadRef = 0.0015f;
-    const float hurtRef = 0.0075f;
-    const float normalRef = 0.015f;
+    const float hurtRef = 0.015f;
+    const float normalRef = 0.03f;
     float inmunityRef = 0.0f;
     List<Vector2> trail;
     public int framesRef;

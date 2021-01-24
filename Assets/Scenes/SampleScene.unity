@@ -394,7 +394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.5}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1099.5, y: 559.10004}
+  m_AnchoredPosition: {x: -1099.5, y: 468}
   m_SizeDelta: {x: 1330.546, y: 1587.129}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &316115120
@@ -700,9 +700,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45c1b5d4f78ca2243b332bf572e870ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.025
-  diffInTime: 10
-  maxDiff: {x: 0.04, y: 50}
+  speed: 0.04
+  diffInTime: 60
+  maxDiff: {x: 0.1, y: 50}
   startRef: 0
 --- !u!20 &519420031
 Camera:
@@ -1330,12 +1330,12 @@ PrefabInstance:
     - target: {fileID: 3256285065413852066, guid: 6009f9b3665807a46b2d4b98c18c410c,
         type: 3}
       propertyPath: finalFrames
-      value: 140
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3256285065413852066, guid: 6009f9b3665807a46b2d4b98c18c410c,
         type: 3}
       propertyPath: framesRef
-      value: 240
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3256285065413852066, guid: 6009f9b3665807a46b2d4b98c18c410c,
         type: 3}
@@ -1524,7 +1524,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -579, y: 483}
+  m_AnchoredPosition: {x: -579, y: 391.89987}
   m_SizeDelta: {x: 357.85837, y: 128.50244}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &876177670
@@ -1632,7 +1632,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0000000037252903, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
     pivot: {x: 0.5, y: 0.5}
@@ -1643,7 +1643,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.18010762, y: 0.16}
   m_EdgeRadius: 0
 --- !u!212 &914359549
 SpriteRenderer:
@@ -2187,12 +2187,12 @@ PrefabInstance:
     - target: {fileID: 3256285065413852066, guid: 6009f9b3665807a46b2d4b98c18c410c,
         type: 3}
       propertyPath: finalFrames
-      value: 140
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3256285065413852066, guid: 6009f9b3665807a46b2d4b98c18c410c,
         type: 3}
       propertyPath: framesRef
-      value: 240
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3256285065413852066, guid: 6009f9b3665807a46b2d4b98c18c410c,
         type: 3}
@@ -4478,12 +4478,12 @@ PrefabInstance:
     - target: {fileID: 3256285065413852066, guid: 6009f9b3665807a46b2d4b98c18c410c,
         type: 3}
       propertyPath: finalFrames
-      value: 140
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3256285065413852066, guid: 6009f9b3665807a46b2d4b98c18c410c,
         type: 3}
       propertyPath: framesRef
-      value: 240
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3256285065413852066, guid: 6009f9b3665807a46b2d4b98c18c410c,
         type: 3}
