@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     FirebaseDatabase _database;
     DatabaseReference reference;
 
+    
+
     public static User myUser;
 
     public Text text;

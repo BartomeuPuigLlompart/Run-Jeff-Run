@@ -10,6 +10,7 @@ public class SlotLevel : MonoBehaviour
     [SerializeField] int objectPrice;
     [SerializeField] bool unlocked;
 
+    
     [SerializeField]
     Color unlockedColor, lockedColor,
         imageUnlockedColor, imageLockedColor;

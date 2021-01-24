@@ -12,6 +12,7 @@ public class SlotItem : MonoBehaviour
     [SerializeField] int objectPrice;
     [SerializeField] bool active, unlocked;
 
+    public int playerNumber;
     [SerializeField] Color activeColor, inactiveColor,
         imageActiveColor, imageInactiveColor;
 
@@ -224,6 +225,11 @@ public class SlotItem : MonoBehaviour
                     //Set this subject as active and save it in its PlayerPref
                     //active = true;
                     PlayerPrefs.SetInt("Curr" + typeBuff, objectID);
+                    if (objectID == 2)
+                    {
+                        PlayerPrefs.SetFloat("bluecharacter", 2);
+                    }
+
                 }
                 else
                 {
