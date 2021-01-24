@@ -15,6 +15,8 @@ public class AudioManager : MonoBehaviour
     {
         soundOn = (PlayerPrefs.GetFloat("SoundVolume", 0.5f) > 0.0f);
 
+        if (PlayerPrefs.GetFloat("SoundVolume", 0.5f) == 0.0f) Camera.main.gameObject.GetComponent<AudioSource>().mute = true;
+
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
