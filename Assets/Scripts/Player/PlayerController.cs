@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     FirebaseDatabase _database;
     DatabaseReference reference;
 
+    
+
     public static User myUser;
 
     public Text text;
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.SetFloat("bluecharacter", 2);
         runStartRef = Time.time;
         trail = new List<Vector2>();
     }
