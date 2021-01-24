@@ -8,18 +8,24 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
     // Start is called before the first frame update
+
+    bool soundOn, oldSoundOn;
+
     void Awake()
     {
-        foreach(Sound s in sounds)
+        soundOn = (PlayerPrefs.GetFloat("SoundVolume", 0.5f) > 0.0f);
+
+        foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
 
-            s.source.volume = s.volume;
-        
+            s.source.volume = PlayerPrefs.GetFloat("SoundVolume", 0.5f); //s.volume;
+
         }
     }
-  public void Play (string name)
+
+    public void Play (string name)
     {
       Sound s= Array.Find(sounds, sound=> sound.name == name);
         s.source.Play();

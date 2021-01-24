@@ -16,7 +16,8 @@ public class AreYouSureShopPanel : MonoBehaviour
     //Variables of the item selected
     GameObject itemObject;
     SlotItem item;
-    
+
+    GameObject tapAudioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,7 @@ public class AreYouSureShopPanel : MonoBehaviour
         noEntry.callback.AddListener((data) => { PressedNo((PointerEventData)data); });
         noTrigger.triggers.Add(noEntry);
 
+        tapAudioSource = GameObject.FindGameObjectWithTag("SoundManager");
     }
 
     // Update is called once per frame
@@ -77,6 +79,8 @@ public class AreYouSureShopPanel : MonoBehaviour
 
     public void PressedYes(PointerEventData data)
     {
+        if (tapAudioSource) tapAudioSource.GetComponent<SoundManager>().PlayTapSound();
+
         int newCoins = PlayerPrefs.GetInt("CurrCoins", 0) - currItemPrice;
 
         PlayerPrefs.SetInt(typeBuff + idBuff, 1);
@@ -87,6 +91,8 @@ public class AreYouSureShopPanel : MonoBehaviour
 
     public void PressedNo(PointerEventData data)
     {
+        if (tapAudioSource) tapAudioSource.GetComponent<SoundManager>().PlayTapSound();
+
         gameObject.SetActive(false);
     }
 }

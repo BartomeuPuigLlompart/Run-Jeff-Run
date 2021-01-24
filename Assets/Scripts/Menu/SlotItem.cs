@@ -38,6 +38,8 @@ public class SlotItem : MonoBehaviour
 
     string idBuff, typeBuff;
 
+    GameObject tapAudioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -145,6 +147,8 @@ public class SlotItem : MonoBehaviour
                 textChild.SetActive(!unlocked);
             }            
         }
+
+        tapAudioSource = GameObject.FindGameObjectWithTag("SoundManager");
     }
 
     // Update is called once per frame
@@ -198,6 +202,8 @@ public class SlotItem : MonoBehaviour
     {
         if(!areYouSureObject.active)
         {
+            if (tapAudioSource) tapAudioSource.GetComponent<SoundManager>().PlayTapSound();
+
             //Check if the player didn't buy it yet
             if (!unlocked)
             {
